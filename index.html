@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Clean">
+<meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<title>Clean – Enthaltsamkeits-Kalender</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+
+<!-- PWA Manifest inline via JS (no separate file needed) -->
+<script>
+const manifestData = {
+  name: "Clean – Enthaltsamkeits-Kalender",
+  short_name: "Clean",
+  description: "Verfolge deine nüchternen Tage pro Substanz",
+  start_url: ".",
+  display: "standalone",
+  background_color: "#111827",
+  theme_color: "#111827",
+  orientation: "portrait",
+  icons: [
+    { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%232563eb'/%3E%3Ctext x='50%25' y='54%25' font-size='300' text-anchor='middle' dominant-baseline='middle' fill='white'%3E🌿%3C/text%3E%3C/svg%3E", sizes: "512x512", type: "image/svg+xml" }
+  ]
+};
+const blob = new Blob([JSON.stringify(manifestData)], {type:'application/json'});
+const manifestURL = URL.createObjectURL(blob);
+document.write(`<link rel="manifest" href="${manifestURL}">`);
+</script>
+
+<!-- iOS homescreen icon via inline SVG data URI -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%232563eb'/%3E%3Ccircle cx='256' cy='220' r='90' fill='none' stroke='white' stroke-width='28'/%3E%3Cpath d='M256 130 v180 M176 220 h160' stroke='white' stroke-width='28' stroke-linecap='round'/%3E%3Crect x='156' y='340' width='200' height='28' rx='14' fill='white'/%3E%3C/svg%3E">
+
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f3f4f6;
+  --bg3: #e9eaec;
+  --t1: #111827;
+  --t2: #6b7280;
+  --bd: #e5e7eb;
+  --bdl: #f0f1f3;
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --blue: #2563eb; --blue-l: #dbeafe; --blue-d: #1d4ed8;
+  --green: #16a34a; --green-l: #dcfce7;
+  --red: #dc2626; --red-l: #fee2e2;
+  --gold: #b45309;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#111827; --bg2:#1f2937; --bg3:#374151;
+    --t1:#f9fafb; --t2:#9ca3af;
+    --bd:#374151; --bdl:#2d3748;
+    --blue:#3b82f6; --blue-l:#1e3a5f; --blue-d:#60a5fa;
+    --green:#22c55e; --green-l:#14532d;
+    --red:#ef4444; --red-l:#450a0a;
+    --gold:#fbbf24;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{
+  height:100%; overflow:hidden;
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg); color:var(--t1);
+  -webkit-font-smoothing:antialiased;
+}
+/* ── Layout shell ── */
+#shell{
+  display:flex; flex-direction:column;
+  height:100vh; height:100dvh;
+  padding-top:var(--safe-top);
+}
+#header{
+  padding:16px 18px 12px;
+  display:flex; align-items:center; gap:10px;
+  border-bottom:1px solid var(--bdl);
+  flex-shrink:0;
+}
+#header .icon-wrap{
+  width:34px;height:34px;border-radius:var(--r-md);
+  background:var(--blue-l);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+#header h1{font-size:17px;font-weight:600;color:var(--t1)}
+#scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 calc(70px + var(--safe-bottom))}
+/* ── Bottom tab bar ── */
+#tabbar{
+  position:fixed; bottom:0; left:0; right:0;
+  padding-bottom:var(--safe-bottom);
+  background:var(--bg);
+  border-top:1px solid var(--bdl);
+  display:flex; z-index:50;
+}
+.tab{
+  flex:1;padding:10px 0 8px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:none;border:none;cursor:pointer;
+  font-family:inherit;color:var(--t2);font-size:10px;font-weight:500;
+  transition:color .15s;
+}
+.tab i{font-size:22px}
+.tab.active{color:var(--blue)}
+/* ── Notif bar ── */
+.notif-bar{
+  margin:14px 16px 0;
+  background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r-md);
+  padding:10px 13px;display:flex;align-items:center;gap:9px;
+  font-size:13px;color:var(--t2);
+}
+.notif-bar.active{background:var(--green-l);border-color:var(--green);color:var(--green)}
+.notif-bar span{flex:1}
+.btn-notif{
+  padding:5px 11px;border-radius:var(--r-sm);
+  border:1px solid var(--bd);background:var(--bg);
+  font-size:12px;cursor:pointer;color:var(--t2);font-family:inherit;
+}
+/* ── Stats summary ── */
+.streak-row{display:flex;gap:8px;margin:12px 16px 0}
+.streak-card{
+  flex:1;background:var(--bg2);border-radius:var(--r-md);
+  padding:11px 13px;border:1px solid var(--bdl);
+}
+.streak-val{font-size:24px;font-weight:600;color:var(--t1)}
+.streak-lbl{font-size:11px;color:var(--t2);margin-top:2px}
+/* ── Calendar ── */
+.cal-wrap{padding:0 16px}
+.cal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:16px 0 12px;
+}
+.cal-title{font-size:17px;font-weight:600;color:var(--t1)}
+.cal-nav{
+  background:none;border:1px solid var(--bd);
+  border-radius:var(--r-sm);cursor:pointer;
+  color:var(--t2);padding:6px 10px;font-size:16px;line-height:1;
+}
+.cal-nav:active{background:var(--bg2)}
+.dow-row{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:5px}
+.dow{text-align:center;font-size:11px;color:var(--t2);padding:3px 0;font-weight:500}
+.day-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.day-cell{
+  border-radius:var(--r-sm);border:1px solid var(--bdl);
+  min-height:62px;padding:6px;cursor:pointer;
+  background:var(--bg);transition:background .1s;
+  -webkit-user-select:none;user-select:none;
+}
+.day-cell:active{background:var(--bg2)}
+.day-cell.empty{border-color:transparent;background:transparent;cursor:default}
+.day-cell.today{border:2px solid var(--blue)}
+.day-cell.future{opacity:.3;pointer-events:none}
+.day-num{font-size:12px;font-weight:500;color:var(--t2);margin-bottom:3px}
+.day-cell.today .day-num{color:var(--blue);font-weight:700}
+.day-cell.has-entry .day-num{color:var(--t1)}
+.badges{display:flex;flex-wrap:wrap;gap:2px}
+.badge{font-size:8px;padding:2px 5px;border-radius:99px;font-weight:600;white-space:nowrap}
+.badge-clean{background:var(--green-l);color:var(--green)}
+.badge-sub{background:var(--blue-l);color:var(--blue)}
+/* ── Stats page ── */
+.stats-wrap{padding:0 16px}
+.stat-section-title{
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--t2);margin:16px 0 10px;font-weight:600;
+}
+.stat-card{
+  background:var(--bg);border:1px solid var(--bd);
+  border-radius:var(--r-md);padding:13px 14px;margin-bottom:8px;
+}
+.stat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;flex-wrap:wrap;gap:6px}
+.stat-name{font-size:14px;font-weight:500;color:var(--t1);display:flex;align-items:center;gap:8px}
+.stat-name i{color:var(--t2);font-size:16px}
+.pills{display:flex;gap:5px;flex-wrap:wrap}
+.pill{font-size:11px;padding:3px 9px;border-radius:99px;font-weight:500;display:flex;align-items:center;gap:3px}
+.pill-g{background:var(--green-l);color:var(--green)}
+.pill-r{background:var(--red-l);color:var(--red)}
+.bar-track{height:6px;background:var(--bg2);border-radius:99px;overflow:hidden;margin-bottom:6px}
+.bar-fill{height:6px;border-radius:99px;background:var(--blue);transition:width .5s}
+.bar-fill.full{background:var(--green)}
+.stat-meta{display:flex;justify-content:space-between}
+.stat-meta span{font-size:11px;color:var(--t2)}
+.stat-meta .gold{color:var(--gold);font-weight:500}
+.no-data{text-align:center;padding:3rem 1rem;color:var(--t2);font-size:14px}
+.no-data i{font-size:40px;display:block;margin:0 auto 12px;opacity:.35}
+/* ── Bottom sheet modal ── */
+.sheet-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:200;display:flex;align-items:flex-end;
+  animation:fadeIn .2s ease;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.sheet{
+  background:var(--bg);width:100%;
+  border-radius:22px 22px 0 0;
+  padding:12px 20px calc(20px + var(--safe-bottom));
+  animation:slideUp .25s ease;
+  max-height:90vh;overflow-y:auto;
+}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet-handle{width:36px;height:4px;border-radius:99px;background:var(--bg3);margin:0 auto 18px}
+.sheet-title{font-size:17px;font-weight:600;color:var(--t1);margin-bottom:4px}
+.sheet-sub{font-size:13px;color:var(--t2);margin-bottom:16px}
+.subs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.sub-btn{
+  padding:11px 12px;border-radius:var(--r-md);
+  border:1px solid var(--bd);background:var(--bg);
+  font-size:13px;color:var(--t1);cursor:pointer;
+  text-align:left;display:flex;align-items:center;gap:8px;
+  font-family:inherit;transition:all .1s;
+  -webkit-user-select:none;user-select:none;
+}
+.sub-btn:active{background:var(--bg2)}
+.sub-btn.active{background:var(--blue-l);border-color:var(--blue);color:var(--blue-d)}
+.sub-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--bd);flex-shrink:0}
+.sub-btn.active .sub-dot{background:var(--blue);border-color:var(--blue)}
+.sheet-actions{display:flex;gap:8px}
+.btn-save{
+  flex:1;padding:14px;background:var(--blue);color:#fff;
+  border:none;border-radius:var(--r-md);font-size:15px;
+  cursor:pointer;font-weight:600;font-family:inherit;
+}
+.btn-save:active{background:var(--blue-d)}
+.btn-cancel{
+  padding:14px 18px;background:none;
+  border:1px solid var(--bd);border-radius:var(--r-md);
+  font-size:15px;color:var(--t2);cursor:pointer;font-family:inherit;
+}
+.btn-cancel:active{background:var(--bg2)}
+/* ── iOS install banner ── */
+.install-banner{
+  margin:14px 16px 0;
+  background:var(--blue-l);border:1px solid var(--blue);
+  border-radius:var(--r-md);padding:11px 13px;
+  display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--blue-d);
+}
+.install-banner i{font-size:18px;flex-shrink:0;margin-top:1px}
+.install-banner button{
+  margin-left:auto;flex-shrink:0;background:none;border:none;
+  color:var(--blue);cursor:pointer;font-size:18px;padding:0 0 0 8px;
+}
+</style>
+</head>
+<body>
+<div id="shell">
+  <div id="header">
+    <div class="icon-wrap"><i class="ti ti-calendar-check"></i></div>
+    <h1>Clean</h1>
+  </div>
+  <div id="scroll-area">
+    <div id="root"></div>
+  </div>
+  <div id="tabbar">
+    <button class="tab active" id="tab-kal" onclick="switchTab('kalender')">
+      <i class="ti ti-calendar"></i>Kalender
+    </button>
+    <button class="tab" id="tab-stat" onclick="switchTab('statistik')">
+      <i class="ti ti-chart-bar"></i>Statistik
+    </button>
+  </div>
+</div>
+<div id="modal-container"></div>
+
+<script>
+const SUBS=[
+  {id:'alkohol',    label:'Alkohol',    icon:'ti-beer-off'},
+  {id:'tabak',      label:'Tabak',      icon:'ti-smoking-no'},
+  {id:'koffein',    label:'Koffein',    icon:'ti-coffee-off'},
+  {id:'zucker',     label:'Zucker',     icon:'ti-candy-off'},
+  {id:'cannabis',   label:'Cannabis',   icon:'ti-leaf-off'},
+  {id:'amphetamin', label:'Amphetamin', icon:'ti-pill'},
+  {id:'kokain',     label:'Kokain',     icon:'ti-snowflake'},
+  {id:'ketamin',    label:'Ketamin',    icon:'ti-eyeglass-off'}
+];
+const MONTHS=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const DAYS=['Mo','Di','Mi','Do','Fr','Sa','So'];
+
+let data={}, viewY, viewM;
+let modalDate=null, modalSel=[];
+let notifEnabled=false, notifTimer=null;
+let currentTab='kalender';
+let installBannerDismissed=false;
+
+function toKey(y,m,d){return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`}
+function todayKey(){const n=new Date();return toKey(n.getFullYear(),n.getMonth(),n.getDate())}
+function todayObj(){const n=new Date();n.setHours(0,0,0,0);return n}
+function parseKey(k){const p=k.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+
+function loadData(){
+  try{const s=localStorage.getItem('enthalt_v2');if(s)data=JSON.parse(s)}catch(e){}
+  try{const n=localStorage.getItem('enthalt_notif');if(n)notifEnabled=n==='1'}catch(e){}
+  try{const b=localStorage.getItem('enthalt_banner');if(b)installBannerDismissed=b==='1'}catch(e){}
+}
+function saveData(){try{localStorage.setItem('enthalt_v2',JSON.stringify(data))}catch(e){}}
+
+function isIOS(){return /iphone|ipad|ipod/i.test(navigator.userAgent)}
+function isStandalone(){return window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches}
+
+function computeStats(){
+  const sortedKeys=Object.keys(data).sort();
+  if(!sortedKeys.length)return null;
+  const today=todayObj();
+  const stats={};
+  SUBS.forEach(s=>{stats[s.id]={cleanDays:0,relapses:0,currentStreak:0,bestStreak:0}});
+  SUBS.forEach(s=>{
+    const allDays=[];
+    const cur=new Date(parseKey(sortedKeys[0]));
+    while(cur<=today){
+      const k=toKey(cur.getFullYear(),cur.getMonth(),cur.getDate());
+      const entry=data[k];
+      allDays.push({isClean:!!entry&&entry.includes(s.id),hasEntry:!!entry});
+      cur.setDate(cur.getDate()+1);
+    }
+    let streak=0,best=0,relapses=0,total=0,prev=false;
+    allDays.forEach(d=>{
+      if(d.isClean){total++;streak++;if(streak>best)best=streak;prev=true;}
+      else if(d.hasEntry){if(prev)relapses++;streak=0;prev=false;}
+    });
+    let cur2=0;
+    for(let i=allDays.length-1;i>=0;i--){
+      if(allDays[i].isClean)cur2++;
+      else if(allDays[i].hasEntry)break;
+    }
+    stats[s.id]={cleanDays:total,relapses,currentStreak:cur2,bestStreak:best};
+  });
+  return stats;
+}
+
+function render(){
+  const now=new Date();
+  if(viewY===undefined){viewY=now.getFullYear();viewM=now.getMonth();}
+  const todayStr=todayKey(), nowDate=todayObj();
+  const totalEntries=Object.keys(data).length;
+  let streak=0;
+  for(let i=0;i<730;i++){
+    const d=new Date(nowDate);d.setDate(nowDate.getDate()-i);
+    const k=toKey(d.getFullYear(),d.getMonth(),d.getDate());
+    if(data[k]&&data[k].length>0)streak++;
+    else if(i>0)break;
+  }
+
+  // update tab active state
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(currentTab==='kalender'?'tab-kal':'tab-stat').classList.add('active');
+
+  const showBanner=isIOS()&&!isStandalone()&&!installBannerDismissed;
+  const bannerHtml=showBanner?`<div class="install-banner">
+    <i class="ti ti-info-circle"></i>
+    <span>Als App installieren: Tippe auf <strong>Teilen</strong> <i class="ti ti-share" style="font-size:14px"></i> → <strong>Zum Home-Bildschirm</strong></span>
+    <button onclick="dismissBanner()" aria-label="Schließen">×</button>
+  </div>`:'';
+
+  const notifHtml=`<div class="notif-bar${notifEnabled?' active':''}">
+    <i class="ti ti-bell" style="font-size:16px"></i>
+    <span>${notifEnabled?'Erinnerung aktiv – täglich 22:00':'Erinnerung um 22:00 Uhr'}</span>
+    <button class="btn-notif" onclick="toggleNotif()">${notifEnabled?'Aus':'Aktivieren'}</button>
+  </div>`;
+
+  let content='';
+  if(currentTab==='kalender'){
+    const firstDay=new Date(viewY,viewM,1);
+    const daysInMonth=new Date(viewY,viewM+1,0).getDate();
+    let startDow=firstDay.getDay();startDow=startDow===0?6:startDow-1;
+    let cells='';
+    for(let i=0;i<startDow;i++)cells+=`<div class="day-cell empty"></div>`;
+    for(let d=1;d<=daysInMonth;d++){
+      const k=toKey(viewY,viewM,d);
+      const cellDate=new Date(viewY,viewM,d);cellDate.setHours(0,0,0,0);
+      const isToday=k===todayStr, isFuture=cellDate>nowDate;
+      const entry=data[k], hasEntry=entry&&entry.length>0;
+      let cls='day-cell';
+      if(isToday)cls+=' today';if(isFuture)cls+=' future';if(hasEntry)cls+=' has-entry';
+      let badges='';
+      if(hasEntry){
+        if(entry.length===SUBS.length)badges=`<div class="badge badge-clean">✓ Alles</div>`;
+        else{
+          badges=entry.slice(0,2).map(s=>{const sub=SUBS.find(x=>x.id===s);return sub?`<div class="badge badge-sub">${sub.label}</div>`:''}).join('');
+          if(entry.length>2)badges+=`<div class="badge badge-sub">+${entry.length-2}</div>`;
+        }
+      }
+      const click=isFuture?'':`onclick="openModal('${k}')"`;
+      cells+=`<div class="${cls}" ${click}><div class="day-num">${d}</div><div class="badges">${badges}</div></div>`;
+    }
+    content=`
+    <div class="streak-row">
+      <div class="streak-card"><div class="streak-val">${streak}</div><div class="streak-lbl">Tage in Folge</div></div>
+      <div class="streak-card"><div class="streak-val">${totalEntries}</div><div class="streak-lbl">Einträge gesamt</div></div>
+    </div>
+    <div class="cal-wrap">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="navigate(-1)"><i class="ti ti-chevron-left"></i></button>
+        <div class="cal-title">${MONTHS[viewM]} ${viewY}</div>
+        <button class="cal-nav" onclick="navigate(1)"><i class="ti ti-chevron-right"></i></button>
+      </div>
+      <div class="dow-row">${DAYS.map(d=>`<div class="dow">${d}</div>`).join('')}</div>
+      <div class="day-grid">${cells}</div>
+    </div>`;
+  } else {
+    content=buildStats(totalEntries);
+  }
+
+  document.getElementById('root').innerHTML=bannerHtml+notifHtml+content;
+  renderModal();
+}
+
+function buildStats(total){
+  if(total===0)return`<div class="no-data"><i class="ti ti-chart-bar"></i>Noch keine Einträge vorhanden.<br>Trage erst Tage im Kalender ein.</div>`;
+  const stats=computeStats();
+  const maxClean=Math.max(...SUBS.map(s=>stats[s.id].cleanDays),1);
+  const totalRelapses=SUBS.reduce((a,s)=>a+stats[s.id].relapses,0);
+  const rows=SUBS.map(s=>{
+    const st=stats[s.id];
+    const barPct=Math.round((st.cleanDays/maxClean)*100);
+    const isFull=st.cleanDays===total&&total>0;
+    return `<div class="stat-card">
+      <div class="stat-top">
+        <div class="stat-name"><i class="ti ${s.icon}"></i>${s.label}</div>
+        <div class="pills">
+          <span class="pill pill-g"><i class="ti ti-check" style="font-size:10px"></i>${st.cleanDays}d clean</span>
+          ${st.relapses>0?`<span class="pill pill-r"><i class="ti ti-refresh" style="font-size:10px"></i>${st.relapses}× Rückfall</span>`:''}
+        </div>
+      </div>
+      <div class="bar-track"><div class="bar-fill${isFull?' full':''}" style="width:${barPct}%"></div></div>
+      <div class="stat-meta">
+        <span>Jetzt: ${st.currentStreak} Tage</span>
+        <span class="gold">Rekord: ${st.bestStreak} Tage</span>
+      </div>
+    </div>`;
+  }).join('');
+  return`<div class="stats-wrap">
+    <div class="streak-row" style="margin:0">
+      <div class="streak-card"><div class="streak-val">${total}</div><div class="streak-lbl">Tage erfasst</div></div>
+      <div class="streak-card"><div class="streak-val">${totalRelapses}</div><div class="streak-lbl">Rückfälle gesamt</div></div>
+    </div>
+    <div class="stat-section-title" style="margin-top:16px">Enthaltsamkeit pro Substanz</div>
+    ${rows}
+  </div>`;
+}
+
+function renderModal(){
+  const c=document.getElementById('modal-container');
+  if(!modalDate){c.innerHTML='';return;}
+  const p=modalDate.split('-');
+  const dateLabel=`${parseInt(p[2])}. ${MONTHS[parseInt(p[1])-1]} ${p[0]}`;
+  const subsHtml=SUBS.map(s=>{
+    const active=modalSel.includes(s.id);
+    return`<button class="sub-btn${active?' active':''}" onclick="toggleSub('${s.id}')">
+      <span class="sub-dot"></span>
+      <i class="ti ${s.icon}" style="font-size:15px"></i>${s.label}
+    </button>`;
+  }).join('');
+  c.innerHTML=`<div class="sheet-overlay" onclick="handleOverlay(event)">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title">${dateLabel}</div>
+      <div class="sheet-sub">Wovon warst du heute enthaltsam?</div>
+      <div class="subs-grid">${subsHtml}</div>
+      <div class="sheet-actions">
+        <button class="btn-cancel" onclick="closeModal()">Abbrechen</button>
+        <button class="btn-save" onclick="saveEntry()">Speichern</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function handleOverlay(e){if(e.target.classList.contains('sheet-overlay'))closeModal();}
+function openModal(k){modalDate=k;modalSel=[...(data[k]||[])];renderModal();}
+function closeModal(){modalDate=null;modalSel=[];renderModal();}
+function toggleSub(id){const i=modalSel.indexOf(id);if(i>=0)modalSel.splice(i,1);else modalSel.push(id);renderModal();}
+function saveEntry(){if(modalDate)data[modalDate]=[...modalSel];saveData();modalDate=null;modalSel=[];renderModal();render();}
+function navigate(dir){viewM+=dir;if(viewM<0){viewM=11;viewY--}if(viewM>11){viewM=0;viewY++}render();}
+function switchTab(tab){currentTab=tab;render();}
+function dismissBanner(){installBannerDismissed=true;try{localStorage.setItem('enthalt_banner','1')}catch(e){}render();}
+
+function toggleNotif(){
+  if(!notifEnabled){
+    if('Notification' in window&&Notification.permission!=='granted'){
+      Notification.requestPermission().then(p=>{
+        if(p==='granted'){notifEnabled=true;localStorage.setItem('enthalt_notif','1');scheduleNotif();render();}
+        else{alert('Benachrichtigungen wurden blockiert. Bitte in den Einstellungen erlauben.');}
+      });
+    } else {notifEnabled=true;localStorage.setItem('enthalt_notif','1');scheduleNotif();render();}
+  } else {
+    notifEnabled=false;localStorage.setItem('enthalt_notif','0');
+    if(notifTimer)clearTimeout(notifTimer);render();
+  }
+}
+function scheduleNotif(){
+  if(!notifEnabled)return;
+  const now=new Date(),next=new Date();
+  next.setHours(22,0,0,0);if(next<=now)next.setDate(next.getDate()+1);
+  notifTimer=setTimeout(()=>{
+    if(notifEnabled&&'Notification' in window&&Notification.permission==='granted'){
+      new Notification('Clean – Enthaltsamkeits-Kalender',{
+        body:'Wie war dein Tag? Trage jetzt ein, wovon du heute enthaltsam warst.',
+      });
+    }
+    scheduleNotif();
+  },next-now);
+}
+
+loadData();
+render();
+if(notifEnabled)scheduleNotif();
+</script>
+</body>
+</html>
