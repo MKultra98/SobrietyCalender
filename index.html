@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Clean">
-<title>Clean – Stay Free</title>
+<title>Bad Habit Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
@@ -15,7 +15,7 @@
 .svg-icon{display:inline-block;width:1em;height:1em;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 </style>
 <script>
-const md={name:"Clean – Stay Free",short_name:"Clean",display:"standalone",background_color:"#0A0E1A",theme_color:"#0A0E1A",start_url:".",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%237C3AED'/%3E%3Cellipse cx='256' cy='220' rx='120' ry='90' fill='%23A78BFA'/%3E%3Ccircle cx='220' cy='200' r='22' fill='white'/%3E%3Ccircle cx='292' cy='200' r='22' fill='white'/%3E%3Ccircle cx='226' cy='206' r='11' fill='%230A0E1A'/%3E%3Ccircle cx='298' cy='206' r='11' fill='%230A0E1A'/%3E%3C/svg%3E",sizes:"512x512",type:"image/svg+xml"}]};
+const md={name:"Bad Habit Tracker",short_name:"Bad Habits",display:"standalone",background_color:"#0A0E1A",theme_color:"#0A0E1A",start_url:".",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='120' fill='%237C3AED'/%3E%3Cellipse cx='256' cy='220' rx='120' ry='90' fill='%23A78BFA'/%3E%3Ccircle cx='220' cy='200' r='22' fill='white'/%3E%3Ccircle cx='292' cy='200' r='22' fill='white'/%3E%3Ccircle cx='226' cy='206' r='11' fill='%230A0E1A'/%3E%3Ccircle cx='298' cy='206' r='11' fill='%230A0E1A'/%3E%3C/svg%3E",sizes:"512x512",type:"image/svg+xml"}]};
 const b=new Blob([JSON.stringify(md)],{type:'application/json'});
 document.write(`<link rel="manifest" href="${URL.createObjectURL(b)}">`);
 </script>
@@ -66,17 +66,18 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .splash-sub{font-size:14px;color:var(--t2);animation:fadeInUp .6s .5s both ease}
 .splash-skip{margin-top:8px;background:none;border:1px solid var(--bd);border-radius:99px;padding:8px 20px;color:var(--t2);font-size:13px;cursor:pointer;font-family:inherit;animation:fadeInUp .6s .8s both ease}
-.splash-logo{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;background:linear-gradient(90deg,var(--violet),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeInUp .5s both ease}
+.splash-logo{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;background:linear-gradient(90deg,var(--violet),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeInUp .5s both ease}
 .splash-progress{width:120px;height:3px;background:var(--bg3);border-radius:99px;overflow:hidden;animation:fadeInUp .6s .9s both ease}
-.splash-bar{height:3px;background:linear-gradient(90deg,var(--violet),var(--coral));border-radius:99px;animation:splashLoad 5s linear forwards}
+.splash-bar{height:3px;background:linear-gradient(90deg,var(--violet),var(--coral));border-radius:99px;animation:splashLoad 3s linear forwards}
 @keyframes splashLoad{from{width:0}to{width:100%}}
 /* ── SHELL ── */
 #shell{display:flex;flex-direction:column;height:100vh;height:100dvh;padding-top:var(--safe-top)}
 #header{padding:10px 14px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:1px solid var(--bd)}
-#scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(72px + var(--safe-bottom))}
+#scroll-area{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(52px + var(--safe-bottom))}
+#scroll-area.no-scroll{overflow:hidden;padding-bottom:0}
 .app-logo{display:flex;align-items:center;gap:9px}
-.logo-gem{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--coral));display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;box-shadow:0 0 14px rgba(124,58,237,.35)}
-.app-name{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;background:linear-gradient(90deg,var(--violet),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo-svg{flex-shrink:0;filter:drop-shadow(0 0 8px rgba(124,58,237,.4))}
+.app-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;background:linear-gradient(90deg,var(--violet),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.3px}
 .header-actions{display:flex;gap:6px;align-items:center}
 .icon-btn{
   width:34px;height:34px;border-radius:10px;border:1px solid var(--bd);
@@ -87,10 +88,10 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 .icon-btn.notif-on{color:var(--amber);border-color:var(--amber);background:rgba(245,158,11,.1)}
 /* ── TABBAR ── */
 #tabbar{position:fixed;bottom:0;left:0;right:0;padding-bottom:var(--safe-bottom);background:var(--tabbar-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--bd);display:flex;z-index:50}
-.tab{flex:1;padding:9px 0 7px;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;font-family:'Inter',inherit;color:var(--t3);font-size:9px;font-weight:600;letter-spacing:.03em;transition:color .2s}
-.tab i{font-size:21px;transition:transform .2s}
+.tab{flex:1;padding:5px 0 4px;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;font-family:'Inter',inherit;color:var(--t3);font-size:8px;font-weight:600;letter-spacing:.03em;transition:color .2s}
+.tab i{font-size:18px;transition:transform .2s}
 .tab.active{color:var(--violet)}
-.tab.active i{transform:scale(1.18)}
+.tab.active i{transform:scale(1.15)}
 /* ── MASCOT ── */
 .mascot-wrap{
   padding:12px 16px 0;
@@ -127,13 +128,25 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 }
 .mascot-svg-wrap{flex-shrink:0;cursor:pointer;transition:transform .2s}
 .mascot-svg-wrap:active{transform:scale(.88)}
-/* ── HERO ── */
-.hero{margin:10px 16px 0;padding:16px 18px;border-radius:18px;background:var(--hero-grad);border:1px solid var(--bd);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,var(--hero-glow) 0%,transparent 70%);pointer-events:none}
-.hero-eyebrow{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--violet-l);font-weight:600;margin-bottom:4px}
-.hero-num{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--t1) 30%,var(--violet-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-label{font-size:13px;color:var(--t2);margin-top:2px}
-.hero-chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+/* ── HERO DASHBOARD ── */
+.hero{margin:10px 16px 0;border-radius:16px;background:var(--hero-grad);border:1px solid var(--bd);position:relative;overflow:hidden;padding:12px 14px}
+.hero::before{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,var(--hero-glow) 0%,transparent 70%);pointer-events:none}
+.hero-stats-row{display:flex;gap:8px;margin-bottom:10px}
+.hero-stat{flex:1;background:rgba(255,255,255,.06);border-radius:11px;padding:9px 10px;border:1px solid rgba(255,255,255,.08)}
+[data-theme="light"] .hero-stat{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.7)}
+.hero-stat-val{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--t1) 20%,var(--violet-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat-val.accent{background:linear-gradient(135deg,var(--mint),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat-val.warn{background:linear-gradient(135deg,var(--amber),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat-lbl{font-size:9px;color:var(--t2);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
+.hero-week{display:flex;align-items:center;gap:0}
+.hero-week-lbl{font-size:9px;color:var(--t2);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-right:8px;flex-shrink:0}
+.hero-week-days{display:flex;gap:4px;flex:1}
+.hero-day{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.hero-day-name{font-size:8px;color:var(--t3);font-weight:600}
+.hero-day-dot{width:100%;aspect-ratio:1;border-radius:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.06);max-width:28px}
+[data-theme="light"] .hero-day-dot{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.06)}
+.hero-day-dot.clean{border:none}
+.hero-day-dot.today-ring{box-shadow:0 0 0 2px var(--violet-l)}
 .hero-chip{padding:4px 10px;border-radius:99px;font-size:11px;font-weight:600}
 /* ── SECTION TITLE ── */
 .sec-title{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);font-weight:600;margin:16px 16px 8px}
@@ -189,6 +202,17 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 .manage-row:last-child{border-bottom:none}
 .manage-del-btn{display:flex;align-items:center;gap:5px;padding:7px 12px;background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);border-radius:8px;color:#F43F5E;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;flex-shrink:0;transition:all .15s}
 .manage-del-btn:active{transform:scale(.94);background:rgba(244,63,94,.2)}
+.btn-clean-all{
+  width:100%;padding:13px;margin-bottom:14px;
+  background:linear-gradient(135deg,var(--mint),var(--sky));
+  color:#fff;border:none;border-radius:12px;
+  font-size:15px;font-weight:700;font-family:'Syne',sans-serif;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 3px 14px rgba(16,185,129,.3);
+  transition:transform .15s,opacity .15s;
+}
+.btn-clean-all:active{transform:scale(.97);opacity:.9}
+.btn-clean-all.all-selected{background:var(--bg3);color:var(--t2);box-shadow:none;border:1.5px solid var(--bd)}
 .add-custom-row{margin-bottom:14px;padding-top:10px;border-top:1px solid var(--bd)}
 .add-custom-label{font-size:10px;color:var(--t3);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:7px}
 .custom-input-wrap{display:flex;gap:7px}
@@ -204,7 +228,9 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 .btn-cancel:active{transform:scale(.96)}
 /* ── STATS ── */
 .stats-page{padding:0 16px 16px}
-.stat-tabs{display:flex;gap:6px;margin-bottom:14px}
+.stat-tabs-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:14px;padding-bottom:2px}
+.stat-tabs-scroll::-webkit-scrollbar{display:none}
+.stat-tabs{display:flex;gap:6px;white-space:nowrap;width:max-content}
 .stat-tab{padding:6px 13px;border-radius:99px;font-size:12px;font-weight:600;border:1.5px solid var(--bd);background:var(--bg2);color:var(--t2);cursor:pointer;font-family:inherit;transition:all .15s}
 .stat-tab.active{background:var(--violet);border-color:var(--violet);color:#fff}
 .stat-tab:active{transform:scale(.94)}
@@ -231,41 +257,112 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 .bar-meta{display:flex;justify-content:space-between;margin-top:4px}
 .bar-meta span{font-size:11px;color:var(--t2)}
 .heatmap-wrap{margin-bottom:13px}
-.heatmap-title{font-size:12px;color:var(--t2);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:5px}
-.heatmap-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-.hm-cell{aspect-ratio:1;border-radius:4px;background:var(--bg3)}
-.hm-cell.hm-miss{background:rgba(244,63,94,.2)}
+.heatmap-title{font-size:12px;color:var(--t2);font-weight:500;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.heatmap-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:2px}
+.hm-cell{aspect-ratio:1;border-radius:2px;background:var(--bg3)}
+.hm-cell.hm-miss{background:rgba(244,63,94,.25)}
+/* ── DOW BAR CHART ── */
+.dow-bar-chart{display:flex;align-items:flex-end;gap:4px;height:100px;padding-bottom:22px;position:relative}
+.dow-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.dow-bar-pct{font-size:8px;color:var(--t2);font-weight:600;height:12px;line-height:12px}
+.dow-bar-track{flex:1;width:100%;display:flex;align-items:flex-end;background:var(--bg3);border-radius:4px;overflow:hidden;min-height:4px}
+.dow-bar-fill{width:100%;border-radius:4px 4px 0 0;transition:height .6s cubic-bezier(.4,0,.2,1);min-height:2px}
+.dow-bar-lbl{font-size:9px;font-weight:600;margin-top:4px}
+/* ── MONTH BAR CHART ── */
+.month-bar-chart{display:flex;align-items:flex-end;gap:3px;height:100px;padding-bottom:20px}
+.month-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+.month-bar-pct{font-size:7px;font-weight:700;height:12px;line-height:12px}
+.month-bar-track{flex:1;width:100%;display:flex;align-items:flex-end;background:var(--bg3);border-radius:3px;overflow:hidden}
+.month-bar-fill{width:100%;border-radius:3px 3px 0 0;transition:height .6s cubic-bezier(.4,0,.2,1);min-height:2px}
+.month-bar-lbl{font-size:8px;color:var(--t3);font-weight:500;margin-top:3px}
+/* ── MILESTONE CARDS ── */
+.milestone-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:var(--card-bg);border:1px solid var(--card-bd);margin-bottom:8px;transition:opacity .2s}
+.milestone-card.locked{opacity:.45;filter:grayscale(.6)}
+.milestone-icon{font-size:22px;flex-shrink:0;width:32px;text-align:center}
+.milestone-body{flex:1;min-width:0}
+.milestone-label{font-size:13px;font-weight:600;color:var(--t1)}
+.milestone-desc{font-size:11px;color:var(--t2);margin-top:2px}
+.milestone-badge{font-size:16px;flex-shrink:0}
+/* ── VERLAUF GRID ── */
+.verlauf-wrap{padding-bottom:8px}
+.vl-header{display:flex;align-items:center;margin-bottom:3px}
+.vl-wlbl-spacer{width:36px;flex-shrink:0}
+.vl-dow-row{display:grid;grid-template-columns:repeat(7,1fr);flex:1;gap:2px}
+.vl-dow{text-align:center;font-size:9px;color:var(--t3);font-weight:600;padding:1px 0}
+.vl-row{display:flex;align-items:center;gap:4px;margin-bottom:3px}
+.vl-wlbl{width:32px;font-size:9px;color:var(--t3);flex-shrink:0;text-align:right;padding-right:4px}
+.vl-days{display:grid;grid-template-columns:repeat(7,1fr);flex:1;gap:2px}
+.vl-cell{
+  aspect-ratio:1;border-radius:4px;
+  background:var(--bg3);
+  display:flex;flex-wrap:wrap;
+  align-items:center;justify-content:center;
+  gap:1px;padding:1px;
+  position:relative;
+}
+.vl-future{opacity:.2}
+.vl-empty{background:var(--bg3)}
+.vl-all{background:var(--mint);opacity:.85}
+.vl-partial{background:var(--bg2);border:1px solid var(--bd)}
+.vl-today{box-shadow:0 0 0 1.5px var(--violet-l)}
+.vl-dot{width:35%;height:35%;border-radius:50%;flex-shrink:0}
+.vl-legend-row{display:flex;flex-wrap:wrap;gap:6px 10px;margin-top:10px;padding-top:8px;border-top:1px solid var(--bd)}
+.vl-leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--t2)}
+.vl-leg-all{width:10px;height:10px;border-radius:2px;background:var(--mint);opacity:.85}
+.vl-leg-empty{width:10px;height:10px;border-radius:2px;background:var(--bg3)}
+.vl-leg-dot-lg{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .empty{text-align:center;padding:2.5rem 1rem;color:var(--t2);font-size:14px}
 .empty i{font-size:38px;display:block;margin:0 auto 10px;opacity:.3}
 /* ══ EDUCATION CARDS ══ */
-.edu-page{padding:0 0 16px}
-.edu-top{padding:4px 16px 0;display:flex;align-items:center;justify-content:space-between}
-.edu-nav{display:flex;align-items:center;gap:10px}
-.edu-dot{width:7px;height:7px;border-radius:50%;background:var(--bg3);transition:all .25s;cursor:pointer;flex-shrink:0}
-.edu-dot.active{width:20px;border-radius:99px}
-.edu-arr{width:32px;height:32px;border-radius:9px;border:1px solid var(--bd);background:var(--bg3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t2);transition:all .15s;flex-shrink:0}
+.edu-page{display:flex;flex-direction:column;height:calc(100dvh - var(--safe-top) - 54px - var(--safe-bottom) - 52px);padding:0}
+.edu-top{padding:6px 16px 4px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.edu-nav{display:flex;align-items:center;gap:8px}
+.edu-dot{width:6px;height:6px;border-radius:50%;background:var(--bg3);transition:all .25s;cursor:pointer;flex-shrink:0}
+.edu-dot.active{width:18px;border-radius:99px}
+.edu-arr{width:30px;height:30px;border-radius:8px;border:1px solid var(--bd);background:var(--bg3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t2);transition:all .15s;flex-shrink:0}
 .edu-arr:active{transform:scale(.88);background:var(--bg4)}
 .edu-arr:disabled{opacity:.3;pointer-events:none}
-.edu-counter{font-size:12px;color:var(--t2);font-weight:500;min-width:40px;text-align:center}
-.edu-viewport{overflow:hidden;margin:10px 16px 0;border-radius:20px}
-.edu-track{display:flex;transition:transform .38s cubic-bezier(.32,.72,0,1);will-change:transform}
-.edu-card{flex-shrink:0;width:100%;border-radius:20px;overflow:hidden;box-shadow:0 6px 30px rgba(0,0,0,.25)}
-.edu-card-header{padding:22px 20px 18px}
-.edu-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:99px;font-size:11px;font-weight:700;background:rgba(255,255,255,.18);color:#fff;margin-bottom:10px}
-.edu-card-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#fff;line-height:1.1}
-.edu-card-sub{font-size:13px;color:rgba(255,255,255,.72);margin-top:5px}
-.edu-card-body{background:var(--card-bg);padding:16px 18px 20px}
-.edu-section{margin-bottom:14px}
+.edu-counter{font-size:12px;color:var(--t2);font-weight:500;min-width:38px;text-align:center}
+.edu-viewport{overflow:hidden;margin:6px 16px 0;border-radius:18px;flex:1;min-height:0}
+.edu-track{display:flex;height:100%;transition:transform .38s cubic-bezier(.32,.72,0,1);will-change:transform}
+.edu-card{flex-shrink:0;width:100%;height:100%;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.22);display:flex;flex-direction:column}
+.edu-card-header{padding:16px 18px 14px;flex-shrink:0}
+.edu-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;background:rgba(255,255,255,.18);color:#fff;margin-bottom:8px}
+.edu-card-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#fff;line-height:1.1}
+.edu-card-sub{font-size:12px;color:rgba(255,255,255,.72);margin-top:3px}
+.edu-card-body{background:var(--card-bg);padding:12px 16px 16px;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.edu-section{margin-bottom:11px}
 .edu-section:last-child{margin-bottom:0}
-.edu-section-title{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);font-weight:700;margin-bottom:7px}
-.edu-section-text{font-size:13px;color:var(--t2);line-height:1.6}
-.risk-row{display:flex;align-items:center;gap:9px;margin-bottom:6px}
-.risk-label{font-size:12px;color:var(--t2);width:76px;flex-shrink:0}
-.risk-bar-wrap{flex:1;height:6px;background:var(--bg3);border-radius:99px;overflow:hidden}
-.risk-bar{height:6px;border-radius:99px}
-.risk-val{font-size:11px;font-weight:600;width:28px;text-align:right}
-.recovery-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:9px;font-size:12px;font-weight:500;background:var(--bg3);color:var(--t1);margin-bottom:6px;line-height:1.4}
-.edu-swipe-hint{font-size:11px;color:var(--t3);text-align:center;padding:6px 0 0}
+.edu-section-title{font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);font-weight:700;margin-bottom:5px}
+.edu-section-text{font-size:12px;color:var(--t2);line-height:1.55}
+.risk-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.risk-label{font-size:11px;color:var(--t2);width:70px;flex-shrink:0}
+.risk-bar-wrap{flex:1;height:5px;background:var(--bg3);border-radius:99px;overflow:hidden}
+.risk-bar{height:5px;border-radius:99px}
+.risk-val{font-size:10px;font-weight:600;width:26px;text-align:right}
+.recovery-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;font-size:11px;font-weight:500;background:var(--bg3);color:var(--t1);margin-bottom:5px;line-height:1.4}
+.edu-swipe-hint{font-size:10px;color:var(--t3);text-align:center;padding:4px 0 2px;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin-icon{animation:spin 1s linear infinite;opacity:.5}
+/* ── GEWOHNHEITEN PAGE ── */
+.hab-page{padding:14px 16px 16px}
+.hab-add-card{background:var(--card-bg);border:1.5px dashed var(--bd);border-radius:16px;padding:16px;margin-bottom:16px}
+.hab-add-title{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.hab-add-row{display:flex;gap:8px;margin-bottom:8px}
+.hab-add-input{flex:1;background:var(--input-bg);border:1.5px solid var(--bd);border-radius:10px;padding:10px 13px;color:var(--t1);font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.hab-add-input:focus{border-color:var(--violet)}
+.hab-add-input::placeholder{color:var(--t3)}
+.hab-add-btn{padding:10px 16px;background:var(--violet);color:#fff;border:none;border-radius:10px;font-size:14px;cursor:pointer;font-family:inherit;font-weight:600;white-space:nowrap;transition:all .15s}
+.hab-add-btn:active{transform:scale(.94)}
+.hab-section-title{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--t3);font-weight:700;margin:16px 0 10px}
+.hab-list{display:flex;flex-direction:column;gap:8px}
+.hab-item{background:var(--card-bg);border:1px solid var(--card-bd);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.hab-item-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.hab-item-label{flex:1;font-size:14px;font-weight:500;color:var(--t1)}
+.hab-item-badge{font-size:10px;padding:2px 8px;border-radius:99px;background:var(--bg3);color:var(--t3);font-weight:600}
+.hab-item-del{width:30px;height:30px;border-radius:8px;border:1px solid rgba(244,63,94,.25);background:rgba(244,63,94,.06);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#F43F5E;flex-shrink:0;transition:all .15s}
+.hab-item-del:active{transform:scale(.9);background:rgba(244,63,94,.15)}
+.hab-item-del.disabled{opacity:.25;pointer-events:none}
 /* ── TOAST ── */
 .toast{position:fixed;top:calc(58px + var(--safe-top));left:50%;transform:translateX(-50%) translateY(-10px);background:var(--bg3);border:1px solid var(--bd);border-radius:11px;padding:8px 15px;font-size:13px;font-weight:500;color:var(--t1);z-index:999;pointer-events:none;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.3)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -274,7 +371,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 <body>
 <!-- SPLASH -->
 <div id="splash">
-  <div class="splash-logo">Clean</div>
+  <div class="splash-logo">Bad Habit Tracker</div>
   <div class="splash-iso" id="splash-iso"></div>
   <div class="splash-msg" id="splash-msg">Lade…</div>
   <div class="splash-sub">Jeden Tag zählt 🌿</div>
@@ -286,8 +383,42 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
 <div id="shell">
   <div id="header">
     <div class="app-logo">
-      <div class="logo-gem"><i class="ti ti-leaf"></i></div>
-      <div class="app-name">Clean</div>
+      <svg class="logo-svg" width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logo-g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7C3AED"/>
+            <stop offset="100%" stop-color="#F43F5E"/>
+          </linearGradient>
+          <linearGradient id="logo-g2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#A78BFA"/>
+            <stop offset="100%" stop-color="#FB7185"/>
+          </linearGradient>
+        </defs>
+        <!-- Rounded background tile -->
+        <rect width="36" height="36" rx="10" fill="url(#logo-g1)"/>
+        <!-- Radiance rays -->
+        <line x1="18" y1="2.5" x2="18" y2="5" stroke="rgba(255,255,255,.45)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="26.4" y1="4.6" x2="25" y2="6.6" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="9.6" y1="4.6" x2="11" y2="6.6" stroke="rgba(255,255,255,.35)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="32" y1="11.5" x2="29.8" y2="12.5" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="11.5" x2="6.2" y2="12.5" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Head circle -->
+        <circle cx="18" cy="19" r="11" fill="rgba(255,255,255,.18)"/>
+        <!-- Face fill -->
+        <circle cx="18" cy="19" r="10" fill="rgba(255,255,255,.95)"/>
+        <!-- Eyes -->
+        <circle cx="14.5" cy="17" r="1.8" fill="url(#logo-g1)"/>
+        <circle cx="21.5" cy="17" r="1.8" fill="url(#logo-g1)"/>
+        <!-- Eye shine -->
+        <circle cx="15.2" cy="16.3" r=".7" fill="white"/>
+        <circle cx="22.2" cy="16.3" r=".7" fill="white"/>
+        <!-- Smile -->
+        <path d="M13.5 21 Q18 25.5 22.5 21" fill="none" stroke="url(#logo-g1)" stroke-width="1.9" stroke-linecap="round"/>
+        <!-- Cheeks -->
+        <circle cx="12.5" cy="21.5" r="2.5" fill="rgba(244,63,94,.18)"/>
+        <circle cx="23.5" cy="21.5" r="2.5" fill="rgba(244,63,94,.18)"/>
+      </svg>
+      <div class="app-name">Bad Habit Tracker</div>
     </div>
     <div class="header-actions">
       <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" title="Hell/Dunkel">
@@ -302,6 +433,7 @@ html,body{height:100%;overflow:hidden;font-family:'Inter',system-ui,sans-serif;b
   <div id="tabbar">
     <button class="tab active" id="tab-kal" onclick="switchTab('kalender')"><i class="ti ti-calendar-month"></i>Kalender</button>
     <button class="tab" id="tab-stat" onclick="switchTab('statistik')"><i class="ti ti-chart-arcs"></i>Statistik</button>
+    <button class="tab" id="tab-hab" onclick="switchTab('gewohnheiten')"><i class="ti ti-list-check"></i>Gewohnheiten</button>
     <button class="tab" id="tab-edu" onclick="switchTab('education')"><i class="ti ti-school"></i>Wissen</button>
   </div>
 </div>
@@ -422,17 +554,19 @@ const EDU={
 
 function getEduData(sub){
   if(EDU[sub.id])return EDU[sub.id];
-  // Generic for custom substances
+  if(customEduData[sub.id])return customEduData[sub.id];
+  // Fallback while loading
   return{
-    risk:'Unbekannt',riskLevel:50,
-    addiction:'Keine spezifischen Daten verfügbar.',
-    shortPhysical:'Keine spezifischen Daten für diese Substanz.',
-    longPhysical:'Keine spezifischen Daten für diese Substanz.',
-    shortMental:'Keine spezifischen Daten für diese Substanz.',
-    longMental:'Keine spezifischen Daten für diese Substanz.',
-    recovery:'Keine spezifischen Daten verfügbar. Wende dich an eine Beratungsstelle.',
-    timeline:'Keine Daten verfügbar.',
-    chance:'Wende dich an medizinische Fachkräfte.',
+    risk:'Wird geladen…',riskLevel:50,
+    addiction:'Daten werden abgerufen…',
+    shortPhysical:'Daten werden abgerufen…',
+    longPhysical:'Daten werden abgerufen…',
+    shortMental:'Daten werden abgerufen…',
+    longMental:'Daten werden abgerufen…',
+    recovery:'Daten werden abgerufen…',
+    timeline:'Daten werden abgerufen…',
+    chance:'Daten werden abgerufen…',
+    loading:true,
   };
 }
 
@@ -477,7 +611,7 @@ const MESSAGES={
     "ALLES CLEAN! Das ist ein Meilenstein! Du rockst! 🏆",
     "Ich bin so unglaublich stolz auf dich! Einfach wow! 💎",
     "Das ist der Wahnsinn! Du bist mein absoluter Held! 🌈",
-    "100%! Ich könnte vor Freude tanzen! Und ich hab sechs Beine dafür! 🦀💃",
+    "100%! Ich könnte vor Freude tanzen! Und ich hab vier Beine dafür! 🐸💃",
     "Perfekt! So ein Tag verdient eine große Feier. Du hast es verdient! 🥳",
     "Nicht eine einzige Substanz! Das ist außergewöhnliche Willenskraft! 🔥",
     "Ich bin so gerührt! Du machst das wirklich. Jeden. Tag. Neu. 💜",
@@ -487,7 +621,7 @@ const MESSAGES={
     "Super! Jeder eingetragene Tag zählt. Du machst das wirklich gut! 💚",
     "Toll gemacht! Fortschritt ist Fortschritt — egal wie groß! 🌿",
     "Ich bin so froh, dass du hier bist und weitermachst! 💜",
-    "Du bist auf dem richtigen Weg! Ich bin dein größter Fan! 🦀",
+    "Du bist auf dem richtigen Weg! Ich bin dein größter Fan! 🐸",
     "Sehr schön! Denk daran: Es geht um Fortschritt, nicht Perfektion!",
     "Das zählt! Jede clean Substanz ist ein Sieg. Ich bin stolz! ✨",
     "Du kämpfst jeden Tag. Das sieht man! Mach weiter so! 💪",
@@ -515,7 +649,7 @@ const MESSAGES={
     "Ich folge deinem Fortschritt und bin so beeindruckt! 🫂",
     "Jeder Tag auf deinem Streak ist ein Beweis: Du kannst das! ⭐",
     "Diese Zahlen lügen nicht — du bist außergewöhnlich! 🌈",
-    "Dein Streak macht mich so happy! Weiter so! 🦀🔥",
+    "Dein Streak macht mich so happy! Weiter so! 🐸🔥",
     "Schau dir das an! Tag für Tag. Das ist Charakter! 💪",
     "Ich zähle jeden Tag mit dir. Und ich bin begeistert! ✨",
     "Weißt du was diese Zahl bedeutet? Stärke, Mut, Ausdauer — alles du! 🏆",
@@ -524,7 +658,7 @@ const MESSAGES={
   ],
   idle:[
     "Tippe auf mich für eine Aufmunterung! Oder trage deinen Tag ein 😊",
-    "Pssst — ich passe auf dich auf! Du bist in guten Händen 🦀",
+    "Pssst — ich passe auf dich auf! Du bist in guten Händen 🐸",
     "Ich bin immer hier wenn du mich brauchst. Tippe mich an! 💜",
     "Egal wie schwer es gerade ist — du schaffst das! Ich glaube an dich!",
     "Hey! Wusstest du, dass du jetzt schon viel stärker bist als früher? 🌿",
@@ -532,7 +666,7 @@ const MESSAGES={
     "Du bist nicht allein. Ich bin immer dabei — versprochen! 🫂",
     "Kleiner Tipp: Auch nur einen Tag eintragen macht schon einen Unterschied!",
     "Weißt du, was ich an dir mag? Du gibst nicht auf. Das ist alles. 💙",
-    "Ich bin ein Isopod. Ich hab Geduld. Und ich geh nirgendwo hin! 🦀",
+    "Ich bin ein Frosch. Ich hab Geduld. Und ich geh nirgendwo hin! 🐸",
     "Du musst heute nicht perfekt sein. Du musst nur hier sein. ✨",
     "Manchmal reicht es einfach, den nächsten Schritt zu machen. 🌱",
     "Hey, tippe einfach auf heute. Das reicht. Ich bin stolz auf dich! ⭐",
@@ -544,56 +678,108 @@ const MESSAGES={
 function getMsg(cat){const a=MESSAGES[cat];return a[Math.floor(Math.random()*a.length)]}
 
 // ════════════════════════════════════════
-// ISO SVG
+// FROG SVG MASCOT
 // ════════════════════════════════════════
 function isoSVG(mood='happy',size=70){
   const dark=isDark;
-  const bc=dark?'#A78BFA':'#7C3AED';
-  const sc=dark?'#7C3AED':'#6D28D9';
-  const lc=dark?'#8B5CF6':'#6D28D9';
-  const blush=mood==='proud'||mood==='cheer'?'rgba(244,63,94,.4)':'rgba(244,63,94,.18)';
-  const mouth=mood==='cheer'?
-    `<path d="M32 21 Q37 25 42 21" stroke="#1A1A2E" stroke-width="1.8" stroke-linecap="round" fill="none"/>`:
-    mood==='happy'||mood==='proud'?
-    `<path d="M33 21 Q37 24.5 41 21" stroke="#1A1A2E" stroke-width="1.6" stroke-linecap="round" fill="none"/>`:
-    `<path d="M33 22.5 Q37 20 41 22.5" stroke="#1A1A2E" stroke-width="1.6" stroke-linecap="round" fill="none"/>`;
-  const bob=mood==='cheer'?
-    `<animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="0.45s" repeatCount="indefinite"/>`:
-    `<animateTransform attributeName="transform" type="translate" values="0,0;0,-1.5;0,0" dur="2.2s" repeatCount="indefinite"/>`;
-  const legs=Array.from({length:4},(_,i)=>{
-    const y=32+i*9;
-    const d=mood==='cheer'?14:6;
-    return`<line x1="15" y1="${y}" x2="5" y2="${y+4}" stroke="${lc}" stroke-width="2" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0 15 ${y};${d} 15 ${y};0 15 ${y}" dur="${.38+i*.07}s" repeatCount="indefinite"/></line>
-    <line x1="59" y1="${y}" x2="69" y2="${y+4}" stroke="${lc}" stroke-width="2" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0 59 ${y};${-d} 59 ${y};0 59 ${y}" dur="${.38+i*.07}s" repeatCount="indefinite"/></line>`;
-  }).join('');
-  return`<svg width="${size}" height="${size}" viewBox="0 0 74 82" xmlns="http://www.w3.org/2000/svg">
-  <g>${bob}
-    <line x1="30" y1="14" x2="20" y2="4" stroke="${lc}" stroke-width="2" stroke-linecap="round"/>
-    <line x1="44" y1="14" x2="54" y2="4" stroke="${lc}" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="20" cy="3" r="2.2" fill="${lc}"/>
-    <circle cx="54" cy="3" r="2.2" fill="${lc}"/>
-    <ellipse cx="37" cy="22" rx="15" ry="9" fill="${bc}"/>
-    <ellipse cx="37" cy="30" rx="18" ry="9" fill="${sc}"/>
-    <ellipse cx="37" cy="38" rx="19" ry="9" fill="${bc}"/>
-    <ellipse cx="37" cy="46" rx="18" ry="9" fill="${sc}"/>
-    <ellipse cx="37" cy="54" rx="16" ry="8" fill="${bc}"/>
-    <ellipse cx="37" cy="62" rx="12" ry="7" fill="${sc}"/>
-    <path d="M22 26 Q37 24 52 26" stroke="${sc}" stroke-width="1" fill="none" opacity=".4"/>
-    <path d="M19 34 Q37 32 55 34" stroke="${bc}" stroke-width="1" fill="none" opacity=".4"/>
-    <path d="M19 42 Q37 40 55 42" stroke="${sc}" stroke-width="1" fill="none" opacity=".4"/>
-    <path d="M21 50 Q37 48 53 50" stroke="${bc}" stroke-width="1" fill="none" opacity=".4"/>
-    <ellipse cx="37" cy="15" rx="13" ry="10" fill="${bc}"/>
-    <circle cx="30" cy="13" r="5.5" fill="white"/>
-    <circle cx="44" cy="13" r="5.5" fill="white"/>
-    <circle cx="31" cy="14" r="2.8" fill="#1A1A2E"/>
-    <circle cx="45" cy="14" r="2.8" fill="#1A1A2E"/>
-    <circle cx="32" cy="12" r="1.1" fill="white"/>
-    <circle cx="46" cy="12" r="1.1" fill="white"/>
-    <circle cx="24" cy="16" r="3" fill="${blush}"/>
-    <circle cx="50" cy="16" r="3" fill="${blush}"/>
+  // Frog color palette — vivid, not too pale
+  const body ='#22C55E';  // vivid mid-green
+  const bodyD='#16A34A';  // medium green for shadow/detail
+  const bodyL='#4ADE80';  // bright highlight
+  const tummy='#BBF7D0';  // soft but not washed-out belly
+  const eye  ='#FFFFFF';
+  const pupil='#1A1A2E';
+  const blush=mood==='proud'||mood==='cheer'?'rgba(244,63,94,.45)':'rgba(244,63,94,.2)';
+
+  // Mouth — centered on face, y=46 baseline, symmetric around x=40
+  const mouth=mood==='cheer'
+    ?`<path d="M30 46 Q40 54 50 46" stroke="${bodyD}" stroke-width="2.5" stroke-linecap="round" fill="none"/>`
+    :mood==='happy'||mood==='proud'
+    ?`<path d="M32 46 Q40 52 48 46" stroke="${bodyD}" stroke-width="2" stroke-linecap="round" fill="none"/>`
+    :`<path d="M32 49 Q40 45 48 49" stroke="${bodyD}" stroke-width="2" stroke-linecap="round" fill="none"/>`;
+
+  // Bob animation
+  const bob=mood==='cheer'
+    ?`<animateTransform attributeName="transform" type="translate" values="0,0;0,-5;0,0" dur="0.4s" repeatCount="indefinite"/>`
+    :`<animateTransform attributeName="transform" type="translate" values="0,0;0,-2;0,0" dur="2s" repeatCount="indefinite"/>`;
+
+  // Front legs (little arms sticking out sides)
+  const legAnim=mood==='cheer'
+    ?`<animateTransform attributeName="transform" type="rotate" values="0;15;0" dur="0.4s" repeatCount="indefinite" additive="sum"/>`
+    :`<animateTransform attributeName="transform" type="rotate" values="0;5;0" dur="2s" repeatCount="indefinite" additive="sum"/>`;
+
+  // Eye bulge animation on cheer
+  const eyeScale=mood==='cheer'
+    ?`<animateTransform attributeName="transform" type="scale" values="1;1.15;1" dur="0.4s" repeatCount="indefinite" additive="sum"/>`
+    :``;
+
+  return`<svg width="${size}" height="${size}" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,-2;0,0" dur="2s" repeatCount="indefinite"/>
+    <!-- Shadow -->
+    <ellipse cx="40" cy="76" rx="18" ry="3.5" fill="rgba(0,0,0,.15)"/>
+    <!-- Body -->
+    <ellipse cx="40" cy="52" rx="24" ry="20" fill="${body}"/>
+    <!-- Belly -->
+    <ellipse cx="40" cy="55" rx="15" ry="13" fill="${tummy}"/>
+    <!-- Body shading -->
+    <ellipse cx="40" cy="44" rx="24" ry="8" fill="${bodyD}" opacity=".3"/>
+    <!-- Back legs -->
+    <ellipse cx="22" cy="67" rx="9" ry="7" fill="${bodyD}"/>
+    <ellipse cx="58" cy="67" rx="9" ry="7" fill="${bodyD}"/>
+    <ellipse cx="18" cy="70" rx="6" ry="4" fill="${body}"/>
+    <ellipse cx="62" cy="70" rx="6" ry="4" fill="${body}"/>
+    <!-- Toes left -->
+    <circle cx="13" cy="72" r="3" fill="${body}"/>
+    <circle cx="18" cy="74" r="3" fill="${body}"/>
+    <circle cx="23" cy="74" r="3" fill="${body}"/>
+    <!-- Toes right -->
+    <circle cx="57" cy="74" r="3" fill="${body}"/>
+    <circle cx="62" cy="74" r="3" fill="${body}"/>
+    <circle cx="67" cy="72" r="3" fill="${body}"/>
+    <!-- Front left arm — rotation anchored at shoulder cx=17 cy=58 -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate"
+        values="0 17 58;${mood==='cheer'?15:5} 17 58;0 17 58"
+        dur="${mood==='cheer'?'0.4s':'2s'}" repeatCount="indefinite"/>
+      <ellipse cx="17" cy="60" rx="7" ry="5" fill="${bodyD}" transform="rotate(-20 17 58)"/>
+      <circle cx="11" cy="63" r="3" fill="${body}"/>
+      <circle cx="15" cy="66" r="3" fill="${body}"/>
+    </g>
+    <!-- Front right arm — rotation anchored at shoulder cx=63 cy=58 -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate"
+        values="0 63 58;${mood==='cheer'?-15:-5} 63 58;0 63 58"
+        dur="${mood==='cheer'?'0.4s':'2s'}" repeatCount="indefinite"/>
+      <ellipse cx="63" cy="60" rx="7" ry="5" fill="${bodyD}" transform="rotate(20 63 58)"/>
+      <circle cx="69" cy="63" r="3" fill="${body}"/>
+      <circle cx="65" cy="66" r="3" fill="${body}"/>
+    </g>
+    <!-- Head -->
+    <ellipse cx="40" cy="38" rx="22" ry="18" fill="${body}"/>
+    <ellipse cx="40" cy="32" rx="22" ry="10" fill="${bodyL}" opacity=".4"/>
+    <!-- Eye stalks on top of head -->
+    <ellipse cx="27" cy="24" rx="10" ry="10" fill="${bodyD}"/>
+    <ellipse cx="53" cy="24" rx="10" ry="10" fill="${bodyD}"/>
+    <!-- Eyes white -->
+    <circle cx="27" cy="23" r="8.5" fill="${eye}"/>
+    <circle cx="53" cy="23" r="8.5" fill="${eye}"/>
+    <!-- Pupils -->
+    <circle cx="28.5" cy="24" r="4.5" fill="${pupil}"/>
+    <circle cx="54.5" cy="24" r="4.5" fill="${pupil}"/>
+    <!-- Eye shine -->
+    <circle cx="30" cy="22" r="1.8" fill="white"/>
+    <circle cx="56" cy="22" r="1.8" fill="white"/>
+    <!-- Nostrils -->
+    <circle cx="35" cy="41" r="2" fill="${bodyD}" opacity=".6"/>
+    <circle cx="45" cy="41" r="2" fill="${bodyD}" opacity=".6"/>
+    <!-- Blush — on cheeks of face, below eyes -->
+    <circle cx="23" cy="44" r="5" fill="${blush}"/>
+    <circle cx="57" cy="44" r="5" fill="${blush}"/>
+    <!-- Mouth — centered on face between nostrils and chin, y=46-50 -->
     ${mouth}
-    ${legs}
-  </g></svg>`;
+  </g>
+</svg>`;
 }
 
 // ════════════════════════════════════════
@@ -615,7 +801,7 @@ function playFanfare(){[523,659,784,1047,1319].forEach((f,i)=>setTimeout(()=>pla
 // ════════════════════════════════════════
 // STATE + PERSISTENCE
 // ════════════════════════════════════════
-let data={},customSubs=[],viewY,viewM;
+let data={},customSubs=[],customEduData={},customIcons={},viewY,viewM;
 let modalDate=null,modalSel=[];
 let notifEnabled=false,notifTimer=null;
 let currentTab='kalender';
@@ -629,12 +815,55 @@ function getSubs(){return[...DEFAULT_SUBS,...customSubs]}
 function loadData(){
   try{const s=localStorage.getItem('clean_v3');if(s)data=JSON.parse(s)}catch(e){}
   try{const s=localStorage.getItem('clean_subs');if(s)customSubs=JSON.parse(s)}catch(e){}
+  try{const s=localStorage.getItem('clean_edu');if(s)customEduData=JSON.parse(s)}catch(e){}
+  try{const s=localStorage.getItem('clean_icons');if(s)customIcons=JSON.parse(s)}catch(e){}
   try{const s=localStorage.getItem('clean_notif');if(s)notifEnabled=s==='1'}catch(e){}
   try{const s=localStorage.getItem('clean_banner');if(s)bannerDismissed=s==='1'}catch(e){}
   try{const s=localStorage.getItem('clean_theme');isDark=s?s==='dark':true}catch(e){}
 }
 function saveData(){try{localStorage.setItem('clean_v3',JSON.stringify(data))}catch(e){}}
 function saveCustomSubs(){try{localStorage.setItem('clean_subs',JSON.stringify(customSubs))}catch(e){}}
+function saveCustomEdu(){try{localStorage.setItem('clean_edu',JSON.stringify(customEduData))}catch(e){}}
+function saveCustomIcons(){try{localStorage.setItem('clean_icons',JSON.stringify(customIcons))}catch(e){}}
+
+// ── Inline SVG icon paths for every default substance ──
+const SUB_ICONS={
+  alkohol: `<path d="M5 3h14l-2 7H7L5 3z"/><path d="M7 10c0 5 2 8 5 8s5-3 5-8"/><line x1="9" y1="14" x2="15" y2="14"/>`,
+  // Cigarette: cylinder body + filter + smoke wisp
+  tabak: `<rect x="2" y="10" width="14" height="4" rx="2"/><rect x="16" y="10" width="6" height="4" rx="1"/><path d="M19 10 Q20 7 18 5 Q16 3 17 1" stroke-linecap="round" fill="none"/>`,
+  // Coffee cup with steam
+  koffein: `<path d="M6 3h12l-2 13H8L6 3z"/><path d="M18 7h2a2 2 0 0 1 0 4h-2"/><path d="M9 1 Q9 3 10 3 Q11 3 11 1"/><path d="M13 1 Q13 3 14 3 Q15 3 15 1"/>`,
+  // Candy / lollipop
+  zucker: `<circle cx="12" cy="9" r="5"/><line x1="12" y1="14" x2="12" y2="22"/><line x1="9" y1="19" x2="15" y2="19"/>`,
+  // Leaf
+  cannabis: `<path d="M12 2 C8 6 4 10 6 15 C8 20 12 22 12 22 C12 22 16 20 18 15 C20 10 16 6 12 2z"/><line x1="12" y1="22" x2="12" y2="12"/><path d="M12 14 C10 12 7 12 6 15"/><path d="M12 12 C14 10 17 10 18 13"/>`,
+  // Pill capsule
+  amphetamin: `<rect x="3" y="9" width="18" height="6" rx="3"/><line x1="12" y1="9" x2="12" y2="15"/>`,
+  // Snowflake
+  kokain: `<line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/><line x1="9" y1="2" x2="12" y2="5"/><line x1="15" y1="2" x2="12" y2="5"/><line x1="9" y1="22" x2="12" y2="19"/><line x1="15" y1="22" x2="12" y2="19"/>`,
+  // Syringe / vial
+  ketamin: `<path d="M14.5 2.5 L19 7 L9 17 L4.5 12.5 Z"/><line x1="9" y1="17" x2="5" y2="21"/><line x1="14.5" y1="2.5" x2="19" y2="7"/><path d="M7 15 L4 18"/>`,
+};
+
+// Returns an inline SVG icon for any sub — always visible, no CDN needed
+function getSubIcon(s, size=15, color='var(--t2)'){
+  const isCustom=customSubs.some(cs=>cs.id===s.id);
+
+  if(!isCustom && SUB_ICONS[s.id]){
+    // Default sub — hand-crafted inline SVG
+    return`<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">${SUB_ICONS[s.id]}</svg>`;
+  }
+
+  // Custom sub — use AI-generated stored SVG
+  if(customIcons[s.id]){
+    const sized=customIcons[s.id].replace(/width="[^"]*"/,'width="'+size+'"').replace(/height="[^"]*"/,'height="'+size+'"');
+    return`<span class="sub-svg-icon" style="flex-shrink:0;width:${size}px;height:${size}px;display:inline-flex;align-items:center;justify-content:center;color:${color}">${sized}</span>`;
+  }
+
+  // Fallback: initial letter in a colored circle
+  const initial=(s.label||'?')[0].toUpperCase();
+  return`<span style="flex-shrink:0;width:${size+2}px;height:${size+2}px;border-radius:50%;background:${s.color}22;border:1.5px solid ${s.color}55;display:inline-flex;align-items:center;justify-content:center;font-size:${Math.round(size*.65)}px;font-weight:700;color:${s.color}">${initial}</span>`;
+}
 
 // ════════════════════════════════════════
 // UTILS
@@ -671,7 +900,7 @@ function calcStreak(){
 function initSplash(){
   document.getElementById('splash-iso').innerHTML=isoSVG('cheer',120);
   document.getElementById('splash-msg').innerHTML=getMsg('splash');
-  setTimeout(hideSplash,5000);
+  setTimeout(hideSplash,3000);
 }
 function hideSplash(){
   playChime();
@@ -715,8 +944,10 @@ function render(){
   const streak=calcStreak();
 
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  const tabId={kalender:'tab-kal',statistik:'tab-stat',education:'tab-edu'}[currentTab];
+  const tabId={kalender:'tab-kal',statistik:'tab-stat',gewohnheiten:'tab-hab',education:'tab-edu'}[currentTab];
   if(tabId)document.getElementById(tabId).classList.add('active');
+  const sa=document.getElementById('scroll-area');
+  if(sa)sa.className=currentTab==='education'?'no-scroll':'';
 
   const ni=document.getElementById('notif-icon');
   const nb=document.getElementById('notif-btn');
@@ -762,12 +993,69 @@ function render(){
       cells+=`<div class="${cls}" ${click}><div class="day-num">${d}</div>${inner}</div>`;
     }
 
+    // ── Stats for hero ──
+    const totalEntries=Object.keys(data).length;
+    const todayClean=todayEntry.length;
+    const todayTotal=subs.length;
+
+    // Best streak ever
+    let bestStreak=streak;
+    if(Object.keys(data).length>0){
+      let run=0;
+      Object.keys(data).sort().forEach(k=>{if(data[k]&&data[k].length>0){run++;if(run>bestStreak)bestStreak=run;}else{run=0;}});
+    }
+
+    // Current Mon–Sun week (fixed, not rolling)
+    const weekDays=['Mo','Di','Mi','Do','Fr','Sa','So'];
+    const todayDow=(nowDate.getDay()+6)%7; // 0=Mon … 6=Sun
+    const monday=new Date(nowDate);monday.setDate(nowDate.getDate()-todayDow);
+    const weekSlots=Array.from({length:7},(_,i)=>{
+      const d=new Date(monday);d.setDate(monday.getDate()+i);
+      const k=toKey(d.getFullYear(),d.getMonth(),d.getDate());
+      const isFutureDay=d>nowDate;
+      const isToday=d.getTime()===nowDate.getTime();
+      const entry=data[k];
+      return{k,entry,isToday,isFutureDay,label:weekDays[i]};
+    });
+    const weekDotsHtml=weekSlots.map(day=>{
+      const hasEntry=day.entry&&day.entry.length>0;
+      const allClean=hasEntry&&day.entry.length===subs.length;
+      const someClean=hasEntry&&day.entry.length>0;
+      let dotStyle='';
+      if(day.isFutureDay)dotStyle='opacity:.25';
+      else if(allClean)dotStyle=`background:var(--mint);opacity:.95`;
+      else if(someClean){
+        const firstSub=subs.find(s=>day.entry.includes(s.id));
+        if(firstSub)dotStyle=`background:${firstSub.color};opacity:.85`;
+      }
+      const todayRing=day.isToday?' today-ring':'';
+      const cleanCls=someClean?' clean':'';
+      return`<div class="hero-day">
+        <div class="hero-day-dot${cleanCls}${todayRing}" style="${dotStyle}"></div>
+        <div class="hero-day-name" style="${day.isToday?'color:var(--violet-l);font-weight:700':''}">${day.label}</div>
+      </div>`;
+    }).join('');
+
     content=`${mascotHtml}
     <div class="hero">
-      <div class="hero-eyebrow">Dein Streak</div>
-      <div class="hero-num">${streak}</div>
-      <div class="hero-label">Tage in Folge eingetragen</div>
-      <div class="hero-chips">${chipsHtml}</div>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <div class="hero-stat-val">${streak}</div>
+          <div class="hero-stat-lbl">🔥 Streak</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val accent">${todayClean}<span style="font-size:14px;opacity:.6">/${todayTotal}</span></div>
+          <div class="hero-stat-lbl">✓ Heute clean</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-val warn">${bestStreak}</div>
+          <div class="hero-stat-lbl">⭐ Rekord</div>
+        </div>
+      </div>
+      <div class="hero-week">
+        <div class="hero-week-lbl">Weekly Progress</div>
+        <div class="hero-week-days">${weekDotsHtml}</div>
+      </div>
     </div>
     ${bannerHtml}
     <div class="sec-title">${MONTHS[viewM]} ${viewY}</div>
@@ -780,6 +1068,8 @@ function render(){
     <div class="day-grid">${cells}</div>`;
   } else if(currentTab==='statistik'){
     content=buildStats();
+  } else if(currentTab==='gewohnheiten'){
+    content=buildGewohnheiten();
   } else {
     content=buildEdu();
   }
@@ -805,6 +1095,146 @@ function setMascotMood(mood,msgCat){
 }
 
 // ════════════════════════════════════════
+// GEWOHNHEITEN PAGE
+// ════════════════════════════════════════
+function buildGewohnheiten(){
+  const allSubs=getSubs();
+  const defaultItems=DEFAULT_SUBS.map(s=>`
+    <div class="hab-item">
+      ${getSubIcon(s,16,s.color)}
+      <div class="hab-item-label">${s.label}</div>
+      <span class="hab-item-badge">Standard</span>
+      <div class="hab-item-del disabled" title="Standardsubstanzen können nicht entfernt werden">
+        <svg class="svg-icon" width="14" height="14" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+      </div>
+    </div>`).join('');
+
+  const customItems=customSubs.length?customSubs.map(s=>`
+    <div class="hab-item">
+      ${getSubIcon(s,16,s.color)}
+      <div class="hab-item-label">${s.label}</div>
+      <span class="hab-item-badge" style="color:${s.color};background:${s.color}18">Eigene</span>
+      <button class="hab-item-del" onclick="deleteHabit('${s.id}')" title="Entfernen">
+        <svg class="svg-icon" width="14" height="14" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+      </button>
+    </div>`).join('')
+    :`<div style="font-size:13px;color:var(--t3);padding:8px 0">Noch keine eigenen Gewohnheiten hinzugefügt.</div>`;
+
+  return`<div class="hab-page">
+    <div class="hab-add-card">
+      <div class="hab-add-title">
+        <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Neue Gewohnheit hinzufügen
+      </div>
+      <div class="hab-add-row">
+        <input class="hab-add-input" id="hab-input" placeholder="z.B. Schokolade, Nagelkauen, Social Media…" maxlength="32"
+          onkeydown="if(event.key==='Enter')addHabit()">
+        <button class="hab-add-btn" onclick="addHabit()">Hinzufügen</button>
+      </div>
+      <div style="font-size:11px;color:var(--t3)">Gesundheitsinfos werden automatisch abgerufen und im Wissen-Tab angezeigt.</div>
+    </div>
+
+    <div class="hab-section-title">Eigene Gewohnheiten</div>
+    <div class="hab-list">${customItems}</div>
+
+    <div class="hab-section-title">Standardsubstanzen</div>
+    <div class="hab-list">${defaultItems}</div>
+  </div>`;
+}
+
+function addHabit(){
+  const inp=document.getElementById('hab-input');
+  if(!inp)return;
+  const val=inp.value.trim();
+  if(!val)return;
+  if(getSubs().find(s=>s.label.toLowerCase()===val.toLowerCase())){showToast('Gibt es schon!');return;}
+  const color=CUSTOM_COLORS[customSubs.length%CUSTOM_COLORS.length];
+  const id='custom_'+Date.now();
+  customSubs.push({id,label:val,icon:'ti-circle-off',color,grad:`linear-gradient(135deg,#374151,${color})`});
+  saveCustomSubs();
+  inp.value='';
+  playChime();
+  showToast(`„${val}" hinzugefügt ✓`);
+  render();
+  fetchEduData(id,val);
+  fetchIconData(id,val);
+}
+
+function fetchIconData(id, label){
+  // Generate icon locally — no API call, instant, always works
+  const svg=generateLocalIcon(label);
+  customIcons[id]=svg;
+  saveCustomIcons();
+  if(currentTab==='gewohnheiten')render();
+  if(modalDate)renderModal();
+}
+
+function generateLocalIcon(label){
+  const l=label.toLowerCase();
+  // Keyword → SVG path lookup
+  const icons=[
+    // Food & drink
+    {k:['schokolade','chocolate','kakao','schoki'],p:`<path d="M4 6h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><line x1="8" y1="6" x2="8" y2="18"/><line x1="12" y1="6" x2="12" y2="18"/><line x1="16" y1="6" x2="16" y2="18"/><line x1="4" y1="10" x2="20" y2="10"/><line x1="4" y1="14" x2="20" y2="14"/>`},
+    {k:['fast food','burger','fastfood','junk'],p:`<path d="M3 10h18"/><path d="M5 10 Q5 6 12 6 Q19 6 19 10"/><rect x="3" y="10" width="18" height="3"/><path d="M5 13 Q5 18 12 18 Q19 18 19 13"/>`},
+    {k:['chips','snack','knabberei','kartoffel'],p:`<ellipse cx="12" cy="12" rx="9" ry="5" transform="rotate(-20 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="5" transform="rotate(20 12 12)"/>`},
+    {k:['alkohol','alcohol','bier','beer','wein','wine','trinken'],p:`<path d="M5 3h14l-2 7H7L5 3z"/><path d="M7 10c0 5 2 8 5 8s5-3 5-8"/>`},
+    {k:['koffein','kaffee','coffee','espresso','cappuccino'],p:`<path d="M6 3h12l-2 13H8L6 3z"/><path d="M18 7h2a2 2 0 0 1 0 4h-2"/><path d="M9 1q0 2 1 2t1-2"/><path d="M13 1q0 2 1 2t1-2"/>`},
+    {k:['tee','tea'],p:`<path d="M8 3h8l-1 9H9z"/><path d="M17 7h2a2 2 0 0 1 0 4h-2"/><path d="M6 12c0 4 2 6 6 6s6-2 6-6"/>`},
+    {k:['zucker','sugar','süßes','candy','bonbon','sweets'],p:`<circle cx="12" cy="9" r="5"/><line x1="12" y1="14" x2="12" y2="22"/><line x1="9" y1="19" x2="15" y2="19"/>`},
+    {k:['energy drink','energydrink','energy'],p:`<rect x="7" y="2" width="10" height="20" rx="2"/><polyline points="11 8 9 13 13 13 11 18"/>`},
+    // Substances
+    {k:['tabak','rauchen','zigarette','cigarette','nikotin','nikotine','smoke','smoking'],p:`<rect x="2" y="10" width="14" height="4" rx="2"/><rect x="16" y="10" width="6" height="4" rx="1"/><path d="M19 10 Q20 7 18 5 Q16 3 17 1"/>`},
+    {k:['cannabis','gras','weed','kiffen','joint','marihuana'],p:`<path d="M12 2 C8 6 4 10 6 15 C8 20 12 22 12 22 C12 22 16 20 18 15 C20 10 16 6 12 2z"/><line x1="12" y1="22" x2="12" y2="12"/><path d="M12 16 C10 14 7 14 6 17"/><path d="M12 13 C14 11 17 11 18 14"/>`},
+    {k:['pille','pill','tablette','tablet','medikament','medication'],p:`<rect x="3" y="9" width="18" height="6" rx="3"/><line x1="12" y1="9" x2="12" y2="15"/>`},
+    {k:['nadel','spritze','syringe','inject','heroin','opiat','opioid'],p:`<path d="M14.5 2.5 L19 7 L9 17 L4.5 12.5 Z"/><line x1="9" y1="17" x2="5" y2="21"/><line x1="16.5" y1="3.5" x2="20" y2="7"/>`},
+    // Screens & tech
+    {k:['social media','instagram','tiktok','twitter','facebook','snapchat'],p:`<rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.5" fill="currentColor" stroke="none"/>`},
+    {k:['handy','smartphone','phone','bildschirm'],p:`<rect x="7" y="2" width="10" height="20" rx="2"/><line x1="7" y1="6" x2="17" y2="6"/><line x1="7" y1="18" x2="17" y2="18"/><circle cx="12" cy="20.5" r="0.5" fill="currentColor"/>`},
+    {k:['gaming','zocken','spiele','videogame','game'],p:`<rect x="2" y="6" width="20" height="12" rx="2"/><line x1="8" y1="12" x2="12" y2="12"/><line x1="10" y1="10" x2="10" y2="14"/><circle cx="16" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/>`},
+    {k:['fernsehen','tv','netflix','serie','stream'],p:`<rect x="2" y="4" width="20" height="14" rx="2"/><line x1="8" y1="22" x2="16" y2="22"/><line x1="12" y1="18" x2="12" y2="22"/>`},
+    {k:['porn','pornografie','onlyfans'],p:`<circle cx="12" cy="12" r="9"/><path d="M9 12 L11 14 L15 10"/>`},
+    // Behaviours
+    {k:['nagelkauen','nägel','nagel','nail'],p:`<path d="M8 21 L8 10 Q8 7 11 7 L13 7 Q16 7 16 10 L16 21"/><path d="M6 21 L18 21"/><path d="M10 7 Q10 4 12 3 Q14 4 14 7"/>`},
+    {k:['haare','hair','haare zupfen','haarzupfen','trichotillomanie'],p:`<path d="M12 3 Q8 6 8 10 Q8 15 12 21"/><path d="M12 3 Q16 6 16 10 Q16 15 12 21"/><path d="M8 8 Q10 6 12 7 Q14 6 16 8"/>`},
+    {k:['einkaufen','shopping','shoppen','kaufen','geld ausgeben'],p:`<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>`},
+    {k:['glücksspiel','casino','zocken','wetten','poker','bet','gambling'],p:`<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/>`},
+    {k:['lügen','lüge','lie','lies'],p:`<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="8" y1="10" x2="8" y2="10" stroke-width="3" stroke-linecap="round"/><path d="M12 10 Q14 8 16 10"/>`},
+    {k:['alkoholfreie'],p:`<path d="M5 3h14l-2 7H7L5 3z"/><line x1="3" y1="3" x2="21" y2="21"/>`},
+    {k:['sport','fitness','trainieren','laufen','workout'],p:`<circle cx="12" cy="5" r="2"/><path d="M9 9h6l-1 7-2 1-2-1z"/><path d="M9 13l-3 4"/><path d="M15 13l3 4"/>`},
+    {k:['schlafen','schlaf','sleep'],p:`<path d="M17 7A7 7 0 1 0 10 14"/><path d="M17 7h-5l5 7h-5"/>`},
+    {k:['prokrastin','aufschieben','nichts tun'],p:`<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/>`},
+    {k:['negatives denken','gedanken','grübeln','grübelei'],p:`<circle cx="12" cy="9" r="6"/><path d="M12 15 L12 17"/><path d="M12 19 L12 21"/><path d="M9 9 Q10 6 12 6 Q14 6 14 9 Q14 11 12 12"/>`},
+  ];
+
+  // Check each keyword list
+  for(const {k,p} of icons){
+    if(k.some(kw=>l.includes(kw))){
+      return`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">${p}</svg>`;
+    }
+  }
+
+  // No match — generate a unique abstract icon from the first letter + string hash
+  const initial=label[0].toUpperCase();
+  const hash=label.split('').reduce((a,c)=>a+c.charCodeAt(0),0);
+  const shapes=[
+    `<circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">${initial}</text>`,
+    `<rect x="3" y="3" width="18" height="18" rx="3"/><text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">${initial}</text>`,
+    `<polygon points="12,2 22,19 2,19"/><text x="12" y="17" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">${initial}</text>`,
+  ];
+  return`<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">${shapes[hash%shapes.length]}</svg>`;
+}
+
+function deleteHabit(id){
+  customSubs=customSubs.filter(s=>s.id!==id);
+  Object.keys(data).forEach(k=>{data[k]=data[k].filter(sid=>sid!==id)});
+  delete customEduData[id];
+  delete customIcons[id];
+  saveCustomSubs();saveData();saveCustomEdu();saveCustomIcons();
+  playDeselect();showToast('Gewohnheit entfernt');
+  render();
+}
+
+// ════════════════════════════════════════
 // STATS PAGE
 // ════════════════════════════════════════
 function buildStats(){
@@ -813,12 +1243,19 @@ function buildStats(){
   const stats=computeStats();
   const subs=getSubs();
   const totalTracked=sortedKeys.length;
-  const tabsHtml=`<div class="stat-tabs">
-    <button class="stat-tab${statView==='rings'?' active':''}" onclick="setStatView('rings')">Übersicht</button>
-    <button class="stat-tab${statView==='detail'?' active':''}" onclick="setStatView('detail')">Details</button>
-    <button class="stat-tab${statView==='heatmap'?' active':''}" onclick="setStatView('heatmap')">Verlauf</button>
-  </div>`;
+
+  const tabs=[
+    {id:'rings',label:'Übersicht'},
+    {id:'detail',label:'Details'},
+    {id:'wochentag',label:'Wochentage'},
+    {id:'monat',label:'Monatstrend'},
+    {id:'trend',label:'Fortschritt'},
+    {id:'meilensteine',label:'Meilensteine'},
+  ];
+  const tabsHtml=`<div class="stat-tabs-scroll"><div class="stat-tabs">${tabs.map(t=>`<button class="stat-tab${statView===t.id?' active':''}" onclick="setStatView('${t.id}')">${t.label}</button>`).join('')}</div></div>`;
+
   let view='';
+
   if(statView==='rings'){
     const ringsHtml=subs.map(s=>{
       const st=stats[s.id];
@@ -852,8 +1289,8 @@ function buildStats(){
     }
     view=`<div class="rings-grid">${ringsHtml}</div>${detailHtml}`;
   }
+
   if(statView==='detail'){
-    const totalRelapses=subs.reduce((a,s)=>a+stats[s.id].relapses,0);
     const rows=subs.map(s=>{
       const st=stats[s.id];
       const pct=st.totalTracked>0?Math.round((st.cleanDays/st.totalTracked)*100):0;
@@ -873,18 +1310,167 @@ function buildStats(){
       <div class="dstat"><div class="dstat-val" style="color:#F43F5E">${subs.reduce((a,s)=>a+stats[s.id].relapses,0)}</div><div class="dstat-lbl">Rückfälle</div></div>
     </div>${rows}`;
   }
-  if(statView==='heatmap'){
-    const today=todayObj();
-    const days=[];
-    for(let i=83;i>=0;i--){const d=new Date(today);d.setDate(today.getDate()-i);const k=toKey(d.getFullYear(),d.getMonth(),d.getDate());days.push({k,entry:data[k]});}
-    const subRows=subs.map(s=>`<div class="heatmap-wrap"><div class="heatmap-title"><i class="ti ${s.icon}" style="color:${s.color};font-size:12px;vertical-align:-2px"></i> ${s.label}</div><div class="heatmap-grid">${days.map(d=>{if(!d.entry)return`<div class="hm-cell"></div>`;const c=d.entry.includes(s.id);return`<div class="hm-cell${c?' hm-clean':' hm-miss'}" style="${c?`background:${s.color};opacity:.8`:''}"></div>`;}).join('')}</div></div>`).join('');
-    view=`<p style="font-size:12px;color:var(--t2);margin-bottom:10px">Letzte 84 Tage. <span style="color:var(--mint)">■</span> Clean &nbsp;<span style="color:rgba(244,63,94,.55)">■</span> Rückfall</p>${subRows}`;
+
+  if(statView==='wochentag'){
+    const dowNames=['Mo','Di','Mi','Do','Fr','Sa','So'];
+    const dowClean=Array(7).fill(0);
+    const dowTotal=Array(7).fill(0);
+    sortedKeys.forEach(k=>{
+      const d=parseKey(k);
+      const dow=(d.getDay()+6)%7;
+      dowTotal[dow]++;
+      if(data[k]&&data[k].length>0)dowClean[dow]++;
+    });
+    const bars=dowNames.map((name,i)=>{
+      const pct=dowTotal[i]>0?Math.round(dowClean[i]/dowTotal[i]*100):0;
+      const barH=Math.round((pct/100)*80);
+      const isWeekend=i>=5;
+      const color=isWeekend?'#F43F5E':'#7C3AED';
+      return`<div class="dow-bar-col">
+        <div class="dow-bar-pct">${dowTotal[i]>0?pct+'%':''}</div>
+        <div class="dow-bar-track"><div class="dow-bar-fill" style="height:${barH}px;background:${color}88;border-top:2px solid ${color}"></div></div>
+        <div class="dow-bar-lbl" style="color:${isWeekend?'#F43F5E':'var(--t2)'}">${ name}</div>
+      </div>`;
+    }).join('');
+    const ranked=[...dowNames.map((n,i)=>({n,pct:dowTotal[i]>0?Math.round(dowClean[i]/dowTotal[i]*100):null}))].filter(x=>x.pct!==null).sort((a,b)=>b.pct-a.pct);
+    const bestDay=ranked[0],worstDay=ranked[ranked.length-1];
+    view=`<div class="detail-card">
+      <div class="detail-name" style="margin-bottom:16px">Erfolg nach Wochentag</div>
+      <div class="dow-bar-chart">${bars}</div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        ${bestDay?`<div class="dstat" style="flex:1;border-color:rgba(124,58,237,.3)"><div class="dstat-val" style="color:var(--violet)">${bestDay.n}</div><div class="dstat-lbl">Bester Tag</div></div>`:''}
+        ${worstDay&&worstDay!==bestDay?`<div class="dstat" style="flex:1;border-color:rgba(244,63,94,.3)"><div class="dstat-val" style="color:#F43F5E">${worstDay.n}</div><div class="dstat-lbl">Schwerster Tag</div></div>`:''}
+      </div>
+      <p style="font-size:11px;color:var(--t3);margin-top:10px">Wochenende in Rot — erkennst du ein Muster?</p>
+    </div>`;
   }
+
+  if(statView==='monat'){
+    const months={};
+    sortedKeys.forEach(k=>{
+      const ym=k.slice(0,7);
+      if(!months[ym])months[ym]={clean:0,total:0};
+      months[ym].total++;
+      if(data[k]&&data[k].length>0)months[ym].clean++;
+    });
+    const monthKeys=Object.keys(months).sort().slice(-12);
+    const monthNames=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+    const bars=monthKeys.map(ym=>{
+      const m=months[ym];
+      const pct=Math.round(m.clean/m.total*100);
+      const mo=ym.split('-')[1];
+      const label=monthNames[parseInt(mo)-1];
+      const color=pct>=80?'#10B981':pct>=50?'#7C3AED':'#F43F5E';
+      return`<div class="month-bar-col">
+        <div class="month-bar-pct" style="color:${color}">${pct}%</div>
+        <div class="month-bar-track"><div class="month-bar-fill" style="height:${Math.round(pct*.7)}px;background:${color}88;border-top:2px solid ${color}"></div></div>
+        <div class="month-bar-lbl">${label}</div>
+      </div>`;
+    }).join('');
+    let trendHtml='';
+    const lastTwo=monthKeys.slice(-2);
+    if(lastTwo.length===2){
+      const prev=Math.round(months[lastTwo[0]].clean/months[lastTwo[0]].total*100);
+      const curr=Math.round(months[lastTwo[1]].clean/months[lastTwo[1]].total*100);
+      const diff=curr-prev;
+      trendHtml=`<div style="margin-top:12px;padding:10px 12px;background:${diff>=0?'rgba(16,185,129,.1)':'rgba(244,63,94,.08)'};border-radius:10px;border:1px solid ${diff>=0?'rgba(16,185,129,.3)':'rgba(244,63,94,.25)'}">
+        <span style="font-size:13px;font-weight:600;color:${diff>=0?'var(--mint)':'#F43F5E'}">${diff>=0?'↑':'↓'} ${Math.abs(diff)}% ${diff>=0?'besser':'schlechter'} als letzten Monat</span>
+      </div>`;
+    }
+    view=`<div class="detail-card">
+      <div class="detail-name" style="margin-bottom:16px">Monatliche Bilanz</div>
+      <div class="month-bar-chart">${bars}</div>
+      ${trendHtml}
+      <p style="font-size:11px;color:var(--t3);margin-top:10px">Grün ≥80% · Lila ≥50% · Rot &lt;50%</p>
+    </div>`;
+  }
+
+  if(statView==='trend'){
+    const today=todayObj();
+    const points=[];
+    for(let i=59;i>=0;i--){
+      const d=new Date(today);d.setDate(today.getDate()-i);
+      let c=0,t=0;
+      for(let j=6;j>=0;j--){
+        const wd=new Date(d);wd.setDate(d.getDate()-j);
+        const k=toKey(wd.getFullYear(),wd.getMonth(),wd.getDate());
+        if(data[k]){t++;if(data[k].length>0)c++;}
+      }
+      points.push(t>=3?Math.round(c/t*100):null);
+    }
+    const W=320,H=90,PAD=10;
+    const validPoints=points.filter(p=>p!==null);
+    let pathD='';
+    let lastX=PAD,lastY=H-PAD;
+    points.forEach((p,i)=>{
+      if(p===null)return;
+      const x=PAD+i*(W-PAD*2)/59;
+      const y=H-PAD-(p/100)*(H-PAD*2);
+      if(!pathD)pathD=`M${x.toFixed(1)} ${y.toFixed(1)}`;
+      else pathD+=` L${x.toFixed(1)} ${y.toFixed(1)}`;
+      lastX=x;lastY=y;
+    });
+    const areaD=pathD?pathD+` L${lastX.toFixed(1)} ${(H-PAD).toFixed(1)} L${PAD} ${(H-PAD).toFixed(1)} Z`:'';
+    const gridLines=[25,50,75,100].map(v=>{
+      const y=H-PAD-(v/100)*(H-PAD*2);
+      return`<line x1="${PAD}" y1="${y.toFixed(1)}" x2="${W-PAD}" y2="${y.toFixed(1)}" stroke="var(--bd)" stroke-width="0.5"/>
+      <text x="${PAD-2}" y="${(y+3).toFixed(1)}" fill="var(--t3)" font-size="7" text-anchor="end">${v}%</text>`;
+    }).join('');
+    const lastVal=validPoints[validPoints.length-1];
+    const avgAll=validPoints.length?Math.round(validPoints.reduce((a,b)=>a+b,0)/validPoints.length):0;
+    view=`<div class="detail-card">
+      <div class="detail-name" style="margin-bottom:4px">7-Tage Fortschrittstrend</div>
+      <p style="font-size:11px;color:var(--t3);margin-bottom:12px">Rollendes 7-Tage-Ø der letzten 60 Tage</p>
+      <svg width="100%" viewBox="0 0 ${W} ${H}" style="overflow:visible">
+        <defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7C3AED" stop-opacity=".3"/><stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/></linearGradient></defs>
+        ${gridLines}
+        ${pathD?`<path d="${areaD}" fill="url(#tg)"/><path d="${pathD}" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`:''}
+      </svg>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <div class="dstat" style="flex:1"><div class="dstat-val" style="color:var(--violet)">${lastVal??'–'}%</div><div class="dstat-lbl">Aktuell (7d)</div></div>
+        <div class="dstat" style="flex:1"><div class="dstat-val">${avgAll}%</div><div class="dstat-lbl">Ø Gesamt</div></div>
+        <div class="dstat" style="flex:1"><div class="dstat-val" style="color:var(--mint)">${validPoints.length?Math.max(...validPoints):0}%</div><div class="dstat-lbl">Bestes 7d-Ø</div></div>
+      </div>
+    </div>`;
+  }
+
+  if(statView==='meilensteine'){
+    const totalCleanDays=subs.reduce((a,s)=>a+stats[s.id].cleanDays,0);
+    const totalRelapses=subs.reduce((a,s)=>a+stats[s.id].relapses,0);
+    const bestOverall=Math.max(...subs.map(s=>stats[s.id].bestStreak),0);
+    const milestones=[
+      {icon:'📅',label:'Erster Eintrag',desc:'Du hast angefangen zu tracken!',reached:totalTracked>=1,val:null},
+      {icon:'🔥',label:'7-Tage Streak',desc:'Eine volle Woche eingetragen',reached:bestOverall>=7,val:bestOverall>=7?`Rekord: ${bestOverall}d`:null},
+      {icon:'💪',label:'30 Einträge',desc:'Ein ganzer Monat aufgezeichnet',reached:totalTracked>=30,val:`${totalTracked} Tage gesamt`},
+      {icon:'⭐',label:'Monatiger Streak',desc:'30 Tage am Stück',reached:bestOverall>=30,val:bestOverall>=30?`Rekord: ${bestOverall}d`:null},
+      {icon:'💎',label:'100 Clean Days',desc:'100 clean days gesamt',reached:totalCleanDays>=100,val:`${totalCleanDays} clean days`},
+      {icon:'🏆',label:'90-Tage Streak',desc:'Ein Vierteljahr am Stück!',reached:bestOverall>=90,val:bestOverall>=90?`Rekord: ${bestOverall}d`:null},
+      {icon:'🌟',label:'Kein Rückfall',desc:'Noch keinen Rückfall (≥7 Tage)',reached:totalRelapses===0&&totalTracked>=7,val:totalRelapses===0?'Makellos!':null},
+      {icon:'🚀',label:'365 Tage getrackt',desc:'Ein volles Jahr aufgezeichnet',reached:totalTracked>=365,val:`${totalTracked} Tage`},
+    ];
+    const reachedCount=milestones.filter(m=>m.reached).length;
+    const cards=milestones.map(m=>`
+      <div class="milestone-card${m.reached?'':' locked'}">
+        <div class="milestone-icon">${m.icon}</div>
+        <div class="milestone-body">
+          <div class="milestone-label">${m.label}</div>
+          <div class="milestone-desc">${m.reached&&m.val?m.val:m.desc}</div>
+        </div>
+        <div class="milestone-badge">${m.reached?'✓':'🔒'}</div>
+      </div>`).join('');
+    view=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <span style="font-size:13px;color:var(--t2)">${reachedCount} von ${milestones.length} erreicht</span>
+    </div>
+    <div class="bar-track" style="margin-bottom:14px"><div class="bar-fill" style="width:${Math.round(reachedCount/milestones.length*100)}%;background:linear-gradient(90deg,var(--violet),var(--amber))"></div></div>
+    ${cards}`;
+  }
+
   return`<div class="stats-page">${tabsHtml}${view}</div>`;
 }
 function animateRings(){document.querySelectorAll('.ring-fill').forEach(el=>{el.style.strokeDashoffset=parseFloat(el.dataset.target)})}
 function setStatView(v){playNav();statView=v;render();if(v==='rings')setTimeout(animateRings,50)}
 function selectStatSub(id){playSelect();selectedSubStat=selectedSubStat===id?null:id;render();setTimeout(animateRings,50)}
+if(statView==='heatmap')statView='rings';
 
 // ════════════════════════════════════════
 // EDUCATION PAGE
@@ -898,14 +1484,14 @@ function buildEdu(){
     const grad=s.grad||`linear-gradient(135deg,${s.color}88,${s.color})`;
     function rc(l){return l>80?'#F43F5E':l>55?'#F59E0B':l>35?'#0EA5E9':'#10B981'}
     function rb(label,val){const p=Math.round(val),col=rc(p);return`<div class="risk-row"><span class="risk-label">${label}</span><div class="risk-bar-wrap"><div class="risk-bar" style="width:${p}%;background:${col}"></div></div><span class="risk-val" style="color:${col}">${p}%</span></div>`}
-    return`<div class="edu-card">
-      <div class="edu-card-header" style="background:${grad}">
-        <div class="edu-badge">${s.label}</div>
-        <div class="edu-card-name">${s.label}</div>
-        <div class="edu-card-sub">Suchtrisiko: ${ed.risk}</div>
-      </div>
-      <div class="edu-card-body">
-        <div class="edu-section"><div class="edu-section-title">Risikoprofil</div>
+    const bodyContent=ed.loading
+      ?`<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;gap:14px;color:var(--t2)">
+          <svg class="spin-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+          </svg>
+          <span style="font-size:13px">Lade Gesundheitsinformationen…</span>
+        </div>`
+      :`<div class="edu-section"><div class="edu-section-title">Risikoprofil</div>
           ${rb('Sucht',ed.riskLevel)}${rb('Körperlich',Math.min(ed.riskLevel+5,98))}${rb('Mental',Math.max(ed.riskLevel-10,5))}
         </div>
         <div class="edu-section"><div class="edu-section-title">Abhängigkeitspotenzial</div><div class="edu-section-text">${ed.addiction}</div></div>
@@ -917,8 +1503,14 @@ function buildEdu(){
           <div class="edu-section-text" style="margin-bottom:8px">${ed.recovery}</div>
           <div class="recovery-badge">⏱ ${ed.timeline}</div>
         </div>
-        <div class="edu-section"><div class="edu-section-title">Vollständige Genesung</div><div class="edu-section-text" style="font-weight:600;color:var(--mint)">${ed.chance}</div></div>
+        <div class="edu-section"><div class="edu-section-title">Vollständige Genesung</div><div class="edu-section-text" style="font-weight:600;color:var(--mint)">${ed.chance}</div></div>`;
+    return`<div class="edu-card">
+      <div class="edu-card-header" style="background:${grad}">
+        <div class="edu-badge">${s.label}</div>
+        <div class="edu-card-name">${s.label}</div>
+        <div class="edu-card-sub">Suchtrisiko: ${ed.loading?'…':ed.risk}</div>
       </div>
+      <div class="edu-card-body">${bodyContent}</div>
     </div>`;
   }).join('');
   const dots=subs.map((_,i)=>`<span class="edu-dot${i===eduIdx?' active':''}" style="${i===eduIdx?`background:${subs[i].color}`:''}" onclick="goEduCard(${i})"></span>`).join('');
@@ -927,10 +1519,10 @@ function buildEdu(){
       <div class="edu-nav">${dots}</div>
       <div style="display:flex;align-items:center;gap:8px">
         <span class="edu-counter">${eduIdx+1} / ${subs.length}</span>
-        <button class="edu-arr" id="edu-prev" onclick="goEduCard(${eduIdx-1})" ${eduIdx===0?'disabled':''}>
+        <button class="edu-arr" id="edu-prev" onclick="goEduCard(eduIdx-1)" ${eduIdx===0?'disabled':''}>
           <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24">${SVG_CHEVRON_L}</svg>
         </button>
-        <button class="edu-arr" id="edu-next" onclick="goEduCard(${eduIdx+1})" ${eduIdx===subs.length-1?'disabled':''}>
+        <button class="edu-arr" id="edu-next" onclick="goEduCard(eduIdx+1)" ${eduIdx===subs.length-1?'disabled':''}>
           <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24">${SVG_CHEVRON_R}</svg>
         </button>
       </div>
@@ -993,23 +1585,21 @@ function goEduCard(i){
 // ════════════════════════════════════════
 // MODAL — entry sheet + manage sheet
 // ════════════════════════════════════════
-let manageOpen=false;
-
 function renderModal(){
   const c=document.getElementById('modal-container');
   if(!modalDate){c.innerHTML='';return;}
-  if(manageOpen){renderManageSheet();return;}
   const subs=getSubs();
   const p=modalDate.split('-');
   const dateLabel=`${parseInt(p[2])}. ${MONTHS[parseInt(p[1])-1]} ${p[0]}`;
-  // Each substance is its own standalone button — NO nesting
+  const allSelected=subs.every(s=>modalSel.includes(s.id));
   const subsHtml=subs.map(s=>{
     const active=modalSel.includes(s.id);
-    return`<button class="sub-btn${active?' active':''}"
+    const iconColor=active?s.color:'var(--t2)';
+    return`<button class="sub-btn${active?' active':''}" data-sid="${s.id}"
       style="${active?`background:${s.color}18;border-color:${s.color}66`:''}"
       onclick="toggleSub('${s.id}')">
       <span class="sub-dot" style="${active?`background:${s.color};border-color:${s.color};box-shadow:0 0 7px ${s.color}66`:''}"></span>
-      <i class="ti ${s.icon} sub-icon" style="color:${active?s.color:'var(--t2)'}"></i>
+      ${getSubIcon(s,15,iconColor)}
       <span>${s.label}</span>
     </button>`;
   }).join('');
@@ -1018,73 +1608,157 @@ function renderModal(){
       <div class="sheet-handle"></div>
       <div class="sheet-title">${dateLabel}</div>
       <div class="sheet-sub">Wovon warst du heute enthaltsam?</div>
-      <div class="subs-grid">${subsHtml}</div>
-      <div class="add-custom-row">
-        <div class="add-custom-label">Eigene Substanz hinzufügen</div>
-        <div class="custom-input-wrap">
-          <input class="custom-input" id="custom-input" placeholder="z.B. Schokolade…" maxlength="24">
-          <button class="btn-add" onclick="addCustomSub()">+</button>
-        </div>
-        ${customSubs.length>0?`<button class="btn-manage" onclick="openManage()">Substanzen verwalten / entfernen</button>`:''}
+      <button class="btn-clean-all${allSelected?' all-selected':''}" id="btn-clean-all" onclick="toggleAll()">
+        ${allSelected
+          ? `<svg class="svg-icon" width="17" height="17" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alles abwählen`
+          : `<svg class="svg-icon" width="17" height="17" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Clean from Everything`}
+      </button>
+      <div class="subs-grid" id="subs-grid">${subsHtml}</div>
+      <div style="margin-bottom:10px;text-align:center">
+        <button style="background:none;border:none;color:var(--t3);font-size:12px;cursor:pointer;font-family:inherit;text-decoration:underline" onclick="closeModal();switchTab('gewohnheiten')">
+          Gewohnheiten verwalten →
+        </button>
       </div>
       <div class="sheet-actions">
         <button class="btn-cancel" onclick="closeModal()">Abbrechen</button>
         <button class="btn-save" onclick="saveEntry()">Speichern ✓</button>
       </div>
     </div>
-  </div>`;}
-
-function renderManageSheet(){
-  const c=document.getElementById('modal-container');
-  const rows=customSubs.map(s=>`
-    <div class="manage-row">
-      <i class="ti ${s.icon}" style="color:${s.color};font-size:16px;flex-shrink:0"></i>
-      <span style="flex:1;font-size:14px;color:var(--t1)">${s.label}</span>
-      <button class="manage-del-btn" onclick="deleteCustomSub('${s.id}')">
-        <svg class="svg-icon" width="16" height="16" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-        Entfernen
-      </button>
-    </div>`).join('');
-  c.innerHTML=`<div class="sheet-overlay" onclick="handleOverlay(event)">
-    <div class="sheet" onclick="event.stopPropagation()">
-      <div class="sheet-handle"></div>
-      <div class="sheet-title">Substanzen verwalten</div>
-      <div class="sheet-sub">Eigene Substanzen können hier entfernt werden.</div>
-      ${rows.length?rows:`<div style="color:var(--t2);font-size:13px;padding:8px 0">Keine eigenen Substanzen vorhanden.</div>`}
-      <div style="margin-top:16px">
-        <button class="btn-cancel" style="width:100%" onclick="closeManage()">← Zurück</button>
-      </div>
-    </div>
-  </div>`;}
-
-function openManage(){manageOpen=true;renderModal();}
-function closeManage(){manageOpen=false;renderModal();}
-
-function deleteCustomSub(id){
-  customSubs=customSubs.filter(s=>s.id!==id);
-  Object.keys(data).forEach(k=>{data[k]=data[k].filter(sid=>sid!==id)});
-  saveCustomSubs();saveData();
-  modalSel=modalSel.filter(sid=>sid!==id);
-  playDeselect();showToast('Substanz entfernt');
-  if(customSubs.length===0)manageOpen=false;
-  renderModal();
+  </div>`;
 }
 
-function addCustomSub(){
-  const inp=document.getElementById('custom-input');
-  const val=inp.value.trim();
-  if(!val)return;
-  if(getSubs().find(s=>s.label.toLowerCase()===val.toLowerCase())){showToast('Gibt es schon!');return;}
-  const color=CUSTOM_COLORS[customSubs.length%CUSTOM_COLORS.length];
-  customSubs.push({id:'custom_'+Date.now(),label:val,icon:'ti-circle-off',color,grad:`linear-gradient(135deg,#374151,${color})`});
-  saveCustomSubs();inp.value='';
-  playChime();showToast(`„${val}" hinzugefügt ✓`);renderModal();
+// Update a single sub-button in place without rebuilding the sheet
+function updateSubBtn(id){
+  const subs=getSubs();
+  const s=subs.find(x=>x.id===id);
+  if(!s)return;
+  const btn=document.querySelector(`[data-sid="${id}"]`);
+  if(!btn)return;
+  const active=modalSel.includes(id);
+  btn.className=`sub-btn${active?' active':''}`;
+  btn.style.cssText=active?`background:${s.color}18;border-color:${s.color}66`:'';
+  const dot=btn.querySelector('.sub-dot');
+  if(dot)dot.style.cssText=active?`background:${s.color};border-color:${s.color};box-shadow:0 0 7px ${s.color}66`:'';
+  // Update icon color — works for both <i> and <span> icon wrappers
+  const iconColor=active?s.color:'var(--t2)';
+  const ti=btn.querySelector('.ti');
+  if(ti)ti.style.color=iconColor;
+  const svgIcon=btn.querySelector('.sub-svg-icon');
+  if(svgIcon)svgIcon.style.color=iconColor;
+  // update clean-all button state
+  const allBtn=document.getElementById('btn-clean-all');
+  if(allBtn){
+    const allSel=subs.every(x=>modalSel.includes(x.id));
+    allBtn.className=`btn-clean-all${allSel?' all-selected':''}`;
+    allBtn.innerHTML=allSel
+      ?`<svg class="svg-icon" width="17" height="17" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alles abwählen`
+      :`<svg class="svg-icon" width="17" height="17" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Clean from Everything`;
+  }
+}
+
+
+function openManage(){switchTab('gewohnheiten');closeModal();}
+
+
+
+async function fetchEduData(id, label){
+  try{
+    const prompt=`Du bist ein medizinischer Informationsdienst. Erstelle prägnante Gesundheitsinformationen über folgende Gewohnheit/Substanz: "${label}".
+
+Antworte NUR mit einem JSON-Objekt (kein Markdown, keine Erklärungen) in exakt diesem Format:
+{
+  "risk": "Niedrig|Mittel|Hoch|Sehr hoch",
+  "riskLevel": 0-100,
+  "addiction": "Kurze Beschreibung des Suchtpotenzials",
+  "shortPhysical": "Kurzfristige körperliche Risiken",
+  "longPhysical": "Langfristige körperliche Risiken",
+  "shortMental": "Kurzfristige psychische Risiken",
+  "longMental": "Langfristige psychische Risiken",
+  "recovery": "Wie realistisch ist vollständige Genesung?",
+  "timeline": "Zeitliche Abfolge der Genesung",
+  "chance": "Genesungschancen als kurzer Satz"
+}
+
+Wenn es sich um eine harmlose Gewohnheit (z.B. Schokolade, Kaffee, Nagelkauen) handelt, passe die Werte entsprechend an. Antworte auf Deutsch.`;
+
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    if(!res.ok)throw new Error('API error '+res.status);
+    const json=await res.json();
+    const text=json.content[0].text.replace(/```json|```/g,'').trim();
+    const edu=JSON.parse(text);
+    customEduData[id]=edu;
+    saveCustomEdu();
+    // Re-render education tab if currently open
+    if(currentTab==='education')render();
+    showToast(`Infos für „${label}" geladen ✓`);
+  }catch(e){
+    // Store a meaningful fallback so it's not blank
+    customEduData[id]={
+      risk:'Unbekannt',riskLevel:40,
+      addiction:`Zu „${label}" liegen keine spezifischen Abhängigkeitsdaten vor.`,
+      shortPhysical:`Kurzfristige Risiken von „${label}" sind nicht klassifiziert.`,
+      longPhysical:`Langfristige körperliche Risiken von „${label}" sind nicht bekannt.`,
+      shortMental:`Kurzfristige psychische Auswirkungen von „${label}" variieren individuell.`,
+      longMental:`Langzeiteffekte von „${label}" auf die Psyche sind nicht dokumentiert.`,
+      recovery:`Ohne bekannte Sucht ist Verhaltensänderung bei „${label}" gut möglich.`,
+      timeline:'Individuell verschieden — konsultiere bei Bedarf einen Arzt.',
+      chance:'Gut, je nach individuellem Hintergrund.',
+    };
+    saveCustomEdu();
+    if(currentTab==='education')render();
+  }
 }
 
 function handleOverlay(e){if(e.target.classList.contains('sheet-overlay'))closeModal();}
 function openModal(k){playPop();modalDate=k;modalSel=[...(data[k]||[])];manageOpen=false;renderModal();}
 function closeModal(){modalDate=null;modalSel=[];manageOpen=false;renderModal();}
-function toggleSub(id){const i=modalSel.indexOf(id);if(i>=0){modalSel.splice(i,1);playDeselect();}else{modalSel.push(id);playSelect();}renderModal();}
+function toggleSub(id){
+  const i=modalSel.indexOf(id);
+  if(i>=0){modalSel.splice(i,1);playDeselect();}
+  else{modalSel.push(id);playSelect();}
+  updateSubBtn(id);
+}
+function toggleAll(){
+  const subs=getSubs();
+  const allSelected=subs.every(s=>modalSel.includes(s.id));
+  if(allSelected){
+    modalSel=[];
+    playDeselect();
+  } else {
+    modalSel=subs.map(s=>s.id);
+    playChime();
+  }
+  // Rebuild just the subs grid and clean-all button (no sheet flash)
+  const grid=document.getElementById('subs-grid');
+  if(grid){
+    grid.innerHTML=subs.map(s=>{
+      const active=modalSel.includes(s.id);
+      return`<button class="sub-btn${active?' active':''}" data-sid="${s.id}"
+        style="${active?`background:${s.color}18;border-color:${s.color}66`:''}"
+        onclick="toggleSub('${s.id}')">
+        <span class="sub-dot" style="${active?`background:${s.color};border-color:${s.color};box-shadow:0 0 7px ${s.color}66`:''}"></span>
+        <i class="ti ${s.icon} sub-icon" style="color:${active?s.color:'var(--t2)'}"></i>
+        <span>${s.label}</span>
+      </button>`;
+    }).join('');
+  }
+  const allBtn=document.getElementById('btn-clean-all');
+  if(allBtn){
+    const nowAll=subs.every(s=>modalSel.includes(s.id));
+    allBtn.className=`btn-clean-all${nowAll?' all-selected':''}`;
+    allBtn.innerHTML=nowAll
+      ?`<svg class="svg-icon" width="17" height="17" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Alles abwählen`
+      :`<svg class="svg-icon" width="17" height="17" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Clean from Everything`;
+  }
+}
 
 function saveEntry(){
   if(modalDate){data[modalDate]=[...modalSel];saveData();}
@@ -1113,7 +1787,7 @@ function scheduleNotif(){
   next.setHours(22,0,0,0);if(next<=now)next.setDate(next.getDate()+1);
   notifTimer=setTimeout(()=>{
     if(notifEnabled&&'Notification' in window&&Notification.permission==='granted')
-      new Notification('Clean – Stay Free',{body:'Iso vermisst dich! 🦀 Wie war dein Tag?'});
+      new Notification('Bad Habit Tracker',{body:'Dein Frosch vermisst dich! 🐸 Wie war dein Tag?'});
     scheduleNotif();
   },next-now);
 }
